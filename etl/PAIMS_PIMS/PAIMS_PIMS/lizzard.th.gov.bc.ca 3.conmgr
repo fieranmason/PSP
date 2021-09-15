@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="lizzard.th.gov.bc.ca 3"
+  DTS:DTSID="{C8C8AA70-36CE-4246-AEB2-85EB0DA321F9}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=lizzard.th.gov.bc.ca;Provider=OraOLEDB.Oracle.1;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

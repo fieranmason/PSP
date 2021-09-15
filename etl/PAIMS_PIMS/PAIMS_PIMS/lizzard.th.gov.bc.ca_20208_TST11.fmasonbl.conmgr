@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="lizzard.th.gov.bc.ca_20208_TST11.fmasonbl"
+  DTS:DTSID="{4C206029-ABCF-417F-A00D-9C82614C56E0}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=lizzard.th.gov.bc.ca:20208/TST11;User ID=fmasonbl;Provider=OraOLEDB.Oracle.1;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAArm8XOD0CeUS/uBmaglrsdAAAAAACAAAAAAAQZgAAAAEAACAAAACflpB56PYO/4arjt4l6E7+iRqJ1aaFeGis14iInAJ5tAAAAAAOgAAAAAIAACAAAADBNgwhOoYXte2Dj6YQp9hlTzwXcseQGMFSn7RA41rxjoAAAADtocolylA59KjhIsbpDdWYHH6Y3dSqXdqTcfHvhRAvc0nBRtXGxAJdQPZ7fKf5Zd5QXxAFLnNXJRJiqp602wd7yM/UA/iijnR3MJZfore+H2m8b7Q/c4Fk68wQNAfvIBYq2PYbW0J+Wc61u4ddXBUhT8ipmGg1Lw37eV63nJ1McEAAAADs1AdLw6kZQ9eFtRLmCcPgv8R6/ajsWfrHNhphwsswHA5yu3eer/8ysNocLrX8UmqCHwFN/3J0DOcbgNDX7BlR</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

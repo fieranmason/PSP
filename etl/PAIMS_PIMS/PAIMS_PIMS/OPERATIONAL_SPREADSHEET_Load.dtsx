@@ -1,0 +1,1490 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/13/2021 8:02:38 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MSI"
+  DTS:CreatorName="MSI\fiera"
+  DTS:DTSID="{D4297C2A-7E14-4F30-9722-4B73EC049D39}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="4105"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{47EC9D27-B76A-4C2C-BAC2-65A3DD33759B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SCR Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{CE0C4B65-132E-4340-8FDC-F7293766AC4E}"
+      DTS:ObjectName="SCR Flat File Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="4105"
+          DTS:HeaderRowDelimiter="_x002C_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\fiera\source\repos\PSP\etl\PAIMS_PIMS\input\ETL LIS Operational Spreadsheet to PIMS Dataset 1 SCM RED.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="File # LIS"
+              DTS:DTSID="{AE47080F-82BD-4C74-9232-016044E12567}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="P S File # "
+              DTS:DTSID="{7BB67BB1-ECF8-49C8-B264-9E0C1C857C67}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="District"
+              DTS:DTSID="{2E80D262-56B8-4BED-86FA-4A9F3E79FA67}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Program Name"
+              DTS:DTSID="{8EDFFD79-3982-49CA-BCF0-E3D9664D0B9B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Tenant Name"
+              DTS:DTSID="{B656A18C-61A6-43CE-8CFC-701625C369D9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Contact Name"
+              DTS:DTSID="{F476406B-2E3A-4B95-90A9-F3CF996D8BB0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Contact Phone Number  email"
+              DTS:DTSID="{1B930815-ECBA-46F4-952A-9E033132EBF2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Physical file exists"
+              DTS:DTSID="{803BA677-8D8E-42A4-AC94-6B2CC132D1FF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Digital File exists"
+              DTS:DTSID="{699D655B-3507-4CA7-8177-E442524EB1E1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Comments"
+              DTS:DTSID="{CE66F49B-9DBC-48A9-8463-51A5F5287442}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Physical copy of license exists"
+              DTS:DTSID="{46792781-00BF-4780-B9B1-8165CBFF7DCA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Digital copy of license exists"
+              DTS:DTSID="{D9DCA4D5-3982-4076-BDB6-B0834813048F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Folio #"
+              DTS:DTSID="{518754EF-F2F0-444B-A38C-872B4F1BADAF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PID"
+              DTS:DTSID="{B048925E-D12A-4961-8E1E-EB22FD87AD79}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Property Location Legal Description"
+              DTS:DTSID="{0CFEA88F-3C27-481A-A35B-50E65670B1EA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName=" Expected Annual Payment* exclusive of GST "
+              DTS:DTSID="{CFD366B8-7D7F-40CF-A7A5-A82E463B4657}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="April"
+              DTS:DTSID="{1E433083-4D18-4201-B41F-28538692F0E0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="May"
+              DTS:DTSID="{7932709D-5828-423D-81DE-D65A3328A35C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="June"
+              DTS:DTSID="{7A4FFBCA-0D88-4F5C-A342-1A88DDE5BB7B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="July"
+              DTS:DTSID="{451BFAA6-3C5F-4FC5-A2AD-FB51035F37EA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="August"
+              DTS:DTSID="{159621B4-A183-4202-A5F4-F26161785073}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="September"
+              DTS:DTSID="{6CAD8FAA-0918-439D-9B30-63A0C1DF8745}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="October"
+              DTS:DTSID="{B95E39DB-DDC5-4F28-8AE2-3FA0AAB27BE3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="November"
+              DTS:DTSID="{3341F4D6-065D-4515-8CCF-DD9DFF3C4803}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="December"
+              DTS:DTSID="{31100127-FD5C-4998-9039-31418A8339D8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="January"
+              DTS:DTSID="{DF41B61D-63C8-43C9-91D3-F5D6472FFF50}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="February"
+              DTS:DTSID="{3242862C-FC45-4E09-9562-796570D1ACE3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="March"
+              DTS:DTSID="{65AFBE74-5F5F-421C-A957-67F422AC863F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="&quot;Payment Schedule&quot;"
+              DTS:DTSID="{79D7E34A-EE8F-47F2-827D-6FB2C9815B05}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Start Date"
+              DTS:DTSID="{65D15145-AA68-4F4C-98D5-E184D8DDA8E1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Expiry"
+              DTS:DTSID="{82245A00-C8D5-4C8F-AB7A-D2E0BE24C511}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Notes"
+              DTS:DTSID="{1146EC3D-EE68-4C7F-8DC1-37B809861ECF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="&quot;Bonding Held (Value $)&quot;"
+              DTS:DTSID="{C6B4DA71-ABD4-4B4A-A5C8-53D1D8626B57}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="&quot;Insurance in  Place&quot;"
+              DTS:DTSID="{D02795BF-693C-4480-9A93-5A6BB43042C2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="&quot;Insurance  Expiry&quot;"
+              DTS:DTSID="{1E752C51-2129-4757-A272-C5601025B46C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Checked for expiry?"
+              DTS:DTSID="{2501102B-A805-496A-AE68-DA3D399B93A2}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load Operational Spreadsheet"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{170697A7-295D-4DA7-B2EE-0C5F00D843C5}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Operational Spreadsheet"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Operational Spreadsheet\SCR Flat File Source"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="4105"
+              name="SCR Flat File Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SCR Flat File Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[SCR Flat File Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[File # LIS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[File # LIS]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[File # LIS]"
+                      name="File # LIS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[P S File # ]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[P S File # ]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[P S File # ]"
+                      name="P S File # "
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[District]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[District]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[District]"
+                      name="District"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Program Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Program Name]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Program Name]"
+                      name="Program Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Tenant Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Tenant Name]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Tenant Name]"
+                      name="Tenant Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Contact Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Contact Name]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Contact Name]"
+                      name="Contact Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Contact Phone Number  email]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Contact Phone Number  email]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Contact Phone Number  email]"
+                      name="Contact Phone Number  email"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Physical file exists]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Physical file exists]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Physical file exists]"
+                      name="Physical file exists"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Digital File exists]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Digital File exists]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Digital File exists]"
+                      name="Digital File exists"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Comments]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Comments]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Comments]"
+                      name="Comments"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Physical copy of license exists]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Physical copy of license exists]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Physical copy of license exists]"
+                      name="Physical copy of license exists"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Digital copy of license exists]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Digital copy of license exists]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Digital copy of license exists]"
+                      name="Digital copy of license exists"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Folio #]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Folio #]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Folio #]"
+                      name="Folio #"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[PID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[PID]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[PID]"
+                      name="PID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Property Location Legal Description]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Property Location Legal Description]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Property Location Legal Description]"
+                      name="Property Location Legal Description"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[ Expected Annual Payment* exclusive of GST ]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[ Expected Annual Payment* exclusive of GST ]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[ Expected Annual Payment* exclusive of GST ]"
+                      name=" Expected Annual Payment* exclusive of GST "
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[April]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[April]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[April]"
+                      name="April"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[May]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[May]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[May]"
+                      name="May"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[June]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[June]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[June]"
+                      name="June"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[July]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[July]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[July]"
+                      name="July"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[August]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[August]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[August]"
+                      name="August"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[September]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[September]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[September]"
+                      name="September"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[October]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[October]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[October]"
+                      name="October"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[November]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[November]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[November]"
+                      name="November"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[December]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[December]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[December]"
+                      name="December"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[January]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[January]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[January]"
+                      name="January"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[February]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[February]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[February]"
+                      name="February"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[March]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[March]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[March]"
+                      name="March"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[&quot;Payment Schedule&quot;]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[&quot;Payment Schedule&quot;]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[&quot;Payment Schedule&quot;]"
+                      name="&quot;Payment Schedule&quot;"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Start Date]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Start Date]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Start Date]"
+                      name="Start Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Expiry]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Expiry]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Expiry]"
+                      name="Expiry"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Notes]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Notes]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Notes]"
+                      name="Notes"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[&quot;Bonding Held (Value $)&quot;]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[&quot;Bonding Held (Value $)&quot;]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[&quot;Bonding Held (Value $)&quot;]"
+                      name="&quot;Bonding Held (Value $)&quot;"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[&quot;Insurance in  Place&quot;]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[&quot;Insurance in  Place&quot;]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[&quot;Insurance in  Place&quot;]"
+                      name="&quot;Insurance in  Place&quot;"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[&quot;Insurance  Expiry&quot;]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[&quot;Insurance  Expiry&quot;]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[&quot;Insurance  Expiry&quot;]"
+                      name="&quot;Insurance  Expiry&quot;"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Checked for expiry?]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Checked for expiry?]"
+                      length="50"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].Columns[Checked for expiry?]"
+                      name="Checked for expiry?"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[File # LIS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="File # LIS" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[P S File # ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="P S File # " />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[District]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="District" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Program Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Program Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Tenant Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Tenant Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Contact Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Contact Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Contact Phone Number  email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Contact Phone Number  email" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Physical file exists]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Physical file exists" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Digital File exists]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Digital File exists" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Comments]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Comments" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Physical copy of license exists]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Physical copy of license exists" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Digital copy of license exists]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Digital copy of license exists" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Folio #]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Folio #" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[PID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Property Location Legal Description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Property Location Legal Description" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[ Expected Annual Payment* exclusive of GST ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Expected Annual Payment* exclusive of GST " />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[April]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="April" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[May]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="May" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[June]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="June" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[July]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="July" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[August]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="August" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[September]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="September" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[October]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="October" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[November]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="November" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[December]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="December" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[January]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="January" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[February]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="February" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[March]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="March" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[&quot;Payment Schedule&quot;]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="&quot;Payment Schedule&quot;" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Start Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Start Date" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Expiry]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Expiry" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Notes]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Notes" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[&quot;Bonding Held (Value $)&quot;]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="&quot;Bonding Held (Value $)&quot;" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[&quot;Insurance in  Place&quot;]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="&quot;Insurance in  Place&quot;" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[&quot;Insurance  Expiry&quot;]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="&quot;Insurance  Expiry&quot;" />
+                    <externalMetadataColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Checked for expiry?]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Checked for expiry?" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Operational Spreadsheet\SCR Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="220,41.6"
+          Id="Package\Load Operational Spreadsheet"
+          TopLeft="170.833326545027,107.466667520735" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load Operational Spreadsheet">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\Load Operational Spreadsheet\SCR Flat File Source"
+          TopLeft="223.484839604359,51.2121216191186" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
