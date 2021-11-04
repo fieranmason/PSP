@@ -12,45 +12,10 @@
   DTS:ObjectName="Package2"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="179"
-  DTS:VersionGUID="{4E9D02B3-0495-46A6-8953-33CA953D0C26}">
+  DTS:VersionBuild="199"
+  DTS:VersionGUID="{A7DF6242-A8AD-47B4-A3B7-1E5C0CD73ECC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[PAIMS]"
-      DTS:CreationName="OLEDB"
-      DTS:DelayValidation="True"
-      DTS:DTSID="{2CA26938-B681-4221-A68A-6E558882CE8E}"
-      DTS:ObjectName="PAIMS">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=musket.th.gov.bc.ca:20208/PRD11;User ID=DOFILTEA;Provider=OraOLEDB.Oracle.1;">
-          <DTS:Password
-            DTS:Name="Password"
-            Sensitive="1"></DTS:Password>
-        </DTS:ConnectionManager>
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[PIMS]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{302942B2-7C84-4CB4-8D74-886178A6FA3A}"
-      DTS:ObjectName="PIMS">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=sqldevtst.th.gov.bc.ca;User ID=PIMS_DEV;Initial Catalog=PIMS_DEV;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
-          <DTS:Password
-            DTS:Name="Password"
-            Sensitive="1"></DTS:Password>
-        </DTS:ConnectionManager>
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -65,8 +30,8 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{302942B2-7C84-4CB4-8D74-886178A6FA3A}"
-          SQLTask:SqlStatementSource="delete&#xA;from PIMS_PROPERTY_LEASE&#xA;where APP_LAST_UPDATE_USERID = 'APP_PIMS_PROXY_ETL_EDIT';&#xA;&#xA;delete &#xA;from PIMS_PROPERTY&#xA;where APP_LAST_UPDATE_USERID = 'APP_PIMS_PROXY_ETL_EDIT';&#xA;&#xA;delete &#xA;from PIMS_ADDRESS&#xA;where APP_LAST_UPDATE_USERID = 'APP_PIMS_PROXY_ETL_EDIT';&#xA;&#xA;delete &#xA;from PIMS_CONTACT_METHOD&#xA;where APP_LAST_UPDATE_USERID = 'APP_PIMS_PROXY_ETL_EDIT';&#xA;&#xA;delete&#xA;from PIMS_PERSON&#xA;where APP_LAST_UPDATE_USERID = 'APP_PIMS_PROXY_ETL_EDIT';&#xA;&#xA;delete&#xA;from PIMS_ORGANIZATION&#xA;where APP_LAST_UPDATE_USERID = 'APP_PIMS_PROXY_ETL_EDIT';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:Connection="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}"
+          SQLTask:SqlStatementSource="delete&#xA;from PIMS_PROPERTY_LEASE&#xA;where APP_LAST_UPDATE_USERID = 'APP_PIMS_PROXY_ETL_EDIT' or PROPERTY_ID IN (select PROPERTY_ID from PIMS_PROPERTY where APP_LAST_UPDATE_USERID = 'APP_PIMS_PROXY_ETL_EDIT');&#xA;&#xA;delete &#xA;from PIMS_PROPERTY&#xA;where APP_LAST_UPDATE_USERID = 'APP_PIMS_PROXY_ETL_EDIT';&#xA;&#xA;delete &#xA;from PIMS_ADDRESS&#xA;where APP_LAST_UPDATE_USERID = 'APP_PIMS_PROXY_ETL_EDIT';&#xA;&#xA;delete &#xA;from PIMS_CONTACT_METHOD&#xA;where APP_LAST_UPDATE_USERID = 'APP_PIMS_PROXY_ETL_EDIT';&#xA;&#xA;delete&#xA;from PIMS_PERSON&#xA;where APP_LAST_UPDATE_USERID = 'APP_PIMS_PROXY_ETL_EDIT';&#xA;&#xA;delete&#xA;from PIMS_ORGANIZATION&#xA;where APP_LAST_UPDATE_USERID = 'APP_PIMS_PROXY_ETL_EDIT';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -140,7 +105,7 @@ where [refTable].[STREET_ADDRESS_1] = ? and [refTable].[STREET_ADDRESS_2] = ? an
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Load Contact Method\1230:invalid};#{Package\Load Contact Method\1231:invalid};#{Package\Load Contact Method\1232:invalid};#{Package\Load Contact Method\1233:invalid};</property>
+                  name="ParameterMap">#{Package\Load Contact Method\Union All.Outputs[Union All Output 1].Columns[STREET_ADDRESS_1]};#{Package\Load Contact Method\Union All.Outputs[Union All Output 1].Columns[STREET_ADDRESS_2]};#{Package\Load Contact Method\Union All.Outputs[Union All Output 1].Columns[STREET_ADDRESS_3]};#{Package\Load Contact Method\Union All.Outputs[Union All Output 1].Columns[MUNICIPALITY_NAME]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -153,8 +118,8 @@ where [refTable].[STREET_ADDRESS_1] = ? and [refTable].[STREET_ADDRESS_2] = ? an
               <connections>
                 <connection
                   refId="Package\Load Contact Method\ADDRESS ID.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -1152,7 +1117,7 @@ where [refTable].[STREET_ADDRESS_1] = ? and [refTable].[STREET_ADDRESS_2] = ? an
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  typeConverter="AccessMode">3</property>
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
@@ -1164,7 +1129,7 @@ where [refTable].[STREET_ADDRESS_1] = ? and [refTable].[STREET_ADDRESS_2] = ? an
                 <property
                   dataType="System.String"
                   description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions"></property>
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
@@ -1173,8 +1138,8 @@ where [refTable].[STREET_ADDRESS_1] = ? and [refTable].[STREET_ADDRESS_2] = ? an
               <connections>
                 <connection
                   refId="Package\Load Contact Method\ETL_CONTACT_METHOD_LOG 1.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1415,7 +1380,7 @@ where [refTable].[STREET_ADDRESS_1] = ? and [refTable].[STREET_ADDRESS_2] = ? an
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  typeConverter="AccessMode">3</property>
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
@@ -1427,7 +1392,7 @@ where [refTable].[STREET_ADDRESS_1] = ? and [refTable].[STREET_ADDRESS_2] = ? an
                 <property
                   dataType="System.String"
                   description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions"></property>
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
@@ -1436,8 +1401,8 @@ where [refTable].[STREET_ADDRESS_1] = ? and [refTable].[STREET_ADDRESS_2] = ? an
               <connections>
                 <connection
                   refId="Package\Load Contact Method\ETL_CONTACT_METHOD_LOG 2.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1667,7 +1632,7 @@ where [refTable].[STREET_ADDRESS_1] = ? and [refTable].[STREET_ADDRESS_2] = ? an
                   expressionType="Notify"
                   name="SqlCommandParam"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[PIMS_ORGANIZATION]) [refTable]
-where [refTable].[ADDRESS_ID] = ?</property>
+where [refTable].[ORGANIZATION_NAME] = ? and [refTable].[ADDRESS_ID] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the type of connection used to access the reference dataset."
@@ -1703,7 +1668,7 @@ where [refTable].[ADDRESS_ID] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Load Contact Method\ADDRESS ID.Outputs[Lookup Match Output].Columns[ADDRESS_ID]};</property>
+                  name="ParameterMap">#{Package\Load Contact Method\Union All.Outputs[Union All Output 1].Columns[ORGANIZATION_NAME]};#{Package\Load Contact Method\ADDRESS ID.Outputs[Lookup Match Output].Columns[ADDRESS_ID]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -1716,8 +1681,8 @@ where [refTable].[ADDRESS_ID] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Contact Method\ORGANIZATION ID.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -1726,6 +1691,23 @@ where [refTable].[ADDRESS_ID] = ?</property>
                   refId="Package\Load Contact Method\ORGANIZATION ID.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Contact Method\ORGANIZATION ID.Inputs[Lookup Input].Columns[ORGANIZATION_NAME]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="ORGANIZATION_NAME"
+                      lineageId="Package\Load Contact Method\Union All.Outputs[Union All Output 1].Columns[ORGANIZATION_NAME]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ORGANIZATION_NAME</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
                     <inputColumn
                       refId="Package\Load Contact Method\ORGANIZATION ID.Inputs[Lookup Input].Columns[ADDRESS_ID]"
                       cachedDataType="i8"
@@ -1857,8 +1839,8 @@ WHERE CELL_PHONE_NUMBER IS NOT NULL</property>
               <connections>
                 <connection
                   refId="Package\Load Contact Method\PAM_INTEREST_HOLDER - CELL_PHONE_NUMBER.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PAIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PAIMS]"
+                  connectionManagerID="{0E2A0394-5DAC-4123-B4F8-D304FF1599AE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[kangaroo.th.gov.bc.ca.PAIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2284,8 +2266,8 @@ WHERE EMAIL_ADDRESS IS NOT NULL</property>
               <connections>
                 <connection
                   refId="Package\Load Contact Method\PAM_INTEREST_HOLDER - EMAIL.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PAIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PAIMS]"
+                  connectionManagerID="{0E2A0394-5DAC-4123-B4F8-D304FF1599AE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[kangaroo.th.gov.bc.ca.PAIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2626,7 +2608,7 @@ WHERE EMAIL_ADDRESS IS NOT NULL</property>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">"APP_PAM_MASKED"."PAM_INTEREST_HOLDER"</property>
+                  name="OpenRowset">"APP_PAM"."PAM_INTEREST_HOLDER"</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -2663,8 +2645,8 @@ WHERE FAX_NO IS NOT NULL</property>
               <connections>
                 <connection
                   refId="Package\Load Contact Method\PAM_INTEREST_HOLDER - FAX_NO.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PAIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PAIMS]"
+                  connectionManagerID="{0E2A0394-5DAC-4123-B4F8-D304FF1599AE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[kangaroo.th.gov.bc.ca.PAIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -3005,7 +2987,7 @@ WHERE FAX_NO IS NOT NULL</property>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">"APP_PAM_MASKED"."PAM_INTEREST_HOLDER"</property>
+                  name="OpenRowset">"APP_PAM"."PAM_INTEREST_HOLDER"</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -3042,8 +3024,8 @@ WHERE HOME_PHONE_NO IS NOT NULL</property>
               <connections>
                 <connection
                   refId="Package\Load Contact Method\PAM_INTEREST_HOLDER - HOME_PHONE_NO.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PAIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PAIMS]"
+                  connectionManagerID="{0E2A0394-5DAC-4123-B4F8-D304FF1599AE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[kangaroo.th.gov.bc.ca.PAIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -3384,7 +3366,7 @@ WHERE HOME_PHONE_NO IS NOT NULL</property>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">"APP_PAM_MASKED"."PAM_INTEREST_HOLDER"</property>
+                  name="OpenRowset">"APP_PAM"."PAM_INTEREST_HOLDER"</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -3421,8 +3403,8 @@ WHERE WORK_PHONE_NO IS NOT NULL</property>
               <connections>
                 <connection
                   refId="Package\Load Contact Method\PAM_INTEREST_HOLDER - WORK_PHONE_NO.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PAIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PAIMS]"
+                  connectionManagerID="{0E2A0394-5DAC-4123-B4F8-D304FF1599AE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[kangaroo.th.gov.bc.ca.PAIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -3798,12 +3780,12 @@ where [refTable].[SURNAME] = ? and [refTable].[FIRST_NAME] = ? and [refTable].[M
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PERSON_ID" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ADDRESS_ID" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SURNAME" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FIRST_NAME" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MIDDLE_NAMES" dataType="DT_WSTR" length="200" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NAME_SUFFIX" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BIRTH_DATE" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="IS_DISABLED" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CONCURRENCY_CONTROL_NUMBER" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="APP_CREATE_TIMESTAMP" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="APP_CREATE_USERID" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="APP_CREATE_USER_GUID" dataType="DT_GUID" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="APP_CREATE_USER_DIRECTORY" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="APP_LAST_UPDATE_TIMESTAMP" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="APP_LAST_UPDATE_USERID" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="APP_LAST_UPDATE_USER_GUID" dataType="DT_GUID" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="APP_LAST_UPDATE_USER_DIRECTORY" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DB_CREATE_TIMESTAMP" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DB_CREATE_USERID" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DB_LAST_UPDATE_TIMESTAMP" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DB_LAST_UPDATE_USERID" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PERSON_ID" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SURNAME" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FIRST_NAME" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MIDDLE_NAMES" dataType="DT_WSTR" length="200" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NAME_SUFFIX" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BIRTH_DATE" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="IS_DISABLED" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ADDRESS_ID" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CONCURRENCY_CONTROL_NUMBER" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="APP_CREATE_TIMESTAMP" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="APP_CREATE_USERID" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="APP_CREATE_USER_GUID" dataType="DT_GUID" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="APP_CREATE_USER_DIRECTORY" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="APP_LAST_UPDATE_TIMESTAMP" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="APP_LAST_UPDATE_USERID" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="APP_LAST_UPDATE_USER_GUID" dataType="DT_GUID" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="APP_LAST_UPDATE_USER_DIRECTORY" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DB_CREATE_TIMESTAMP" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DB_CREATE_USERID" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DB_LAST_UPDATE_TIMESTAMP" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DB_LAST_UPDATE_USERID" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Load Contact Method\1234:invalid};#{Package\Load Contact Method\1235:invalid};#{Package\Load Contact Method\1236:invalid};#{Package\Load Contact Method\ADDRESS ID.Outputs[Lookup Match Output].Columns[ADDRESS_ID]};</property>
+                  name="ParameterMap">#{Package\Load Contact Method\Union All.Outputs[Union All Output 1].Columns[SURNAME]};#{Package\Load Contact Method\Union All.Outputs[Union All Output 1].Columns[FIRST_NAME]};#{Package\Load Contact Method\Union All.Outputs[Union All Output 1].Columns[MIDDLE_NAME]};#{Package\Load Contact Method\30:invalid};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -3816,8 +3798,8 @@ where [refTable].[SURNAME] = ? and [refTable].[FIRST_NAME] = ? and [refTable].[M
               <connections>
                 <connection
                   refId="Package\Load Contact Method\PERSON ID.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -4013,8 +3995,8 @@ where [refTable].[SURNAME] = ? and [refTable].[FIRST_NAME] = ? and [refTable].[M
               <connections>
                 <connection
                   refId="Package\Load Contact Method\PIMS_CONTACT_METHOD 3.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -5219,20 +5201,20 @@ where [refTable].[SURNAME] = ? and [refTable].[FIRST_NAME] = ? and [refTable].[M
               name="Derived Column Output"
               startId="Package\Load Contact Method\CONTACT_METHOD_TYPE_CODE - WORKEMAIL.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Load Contact Method.Paths[Lookup Match Output2]"
+              refId="Package\Load Contact Method.Paths[Lookup Match Output1]"
               endId="Package\Load Contact Method\ORGANIZATION ID.Inputs[Lookup Input]"
               name="Lookup Match Output"
               startId="Package\Load Contact Method\PERSON ID.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Load Contact Method.Paths[Lookup Match Output]"
-              endId="Package\Load Contact Method\PERSON ID.Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Load Contact Method\ADDRESS ID.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Load Contact Method.Paths[Lookup Match Output1]"
               endId="Package\Load Contact Method\Audit Trail.Inputs[Derived Column Input]"
               name="Lookup Match Output"
               startId="Package\Load Contact Method\ORGANIZATION ID.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load Contact Method.Paths[Lookup Match Output2]"
+              endId="Package\Load Contact Method\PERSON ID.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Load Contact Method\ADDRESS ID.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Load Contact Method.Paths[Lookup No Match Output]"
               endId="Package\Load Contact Method\ETL_CONTACT_METHOD_LOG 1.Inputs[OLE DB Destination Input]"
@@ -5244,30 +5226,30 @@ where [refTable].[SURNAME] = ? and [refTable].[FIRST_NAME] = ? and [refTable].[M
               name="Lookup No Match Output"
               startId="Package\Load Contact Method\ORGANIZATION ID.Outputs[Lookup No Match Output]" />
             <path
-              refId="Package\Load Contact Method.Paths[OLE DB Source Output4]"
+              refId="Package\Load Contact Method.Paths[OLE DB Source Output]"
+              endId="Package\Load Contact Method\Data Conversion 2.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Contact Method\PAM_INTEREST_HOLDER - FAX_NO.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load Contact Method.Paths[OLE DB Source Output1]"
               endId="Package\Load Contact Method\Data Conversion 3.Inputs[Data Conversion Input]"
               name="OLE DB Source Output"
               startId="Package\Load Contact Method\PAM_INTEREST_HOLDER - CELL_PHONE_NUMBER.Outputs[OLE DB Source Output]" />
             <path
-              refId="Package\Load Contact Method.Paths[OLE DB Source Output]"
+              refId="Package\Load Contact Method.Paths[OLE DB Source Output2]"
               endId="Package\Load Contact Method\Data Conversion.Inputs[Data Conversion Input]"
               name="OLE DB Source Output"
               startId="Package\Load Contact Method\PAM_INTEREST_HOLDER - HOME_PHONE_NO.Outputs[OLE DB Source Output]" />
             <path
-              refId="Package\Load Contact Method.Paths[OLE DB Source Output1]"
+              refId="Package\Load Contact Method.Paths[OLE DB Source Output3]"
               endId="Package\Load Contact Method\Data Conversion 1.Inputs[Data Conversion Input]"
               name="OLE DB Source Output"
               startId="Package\Load Contact Method\PAM_INTEREST_HOLDER - WORK_PHONE_NO.Outputs[OLE DB Source Output]" />
             <path
-              refId="Package\Load Contact Method.Paths[OLE DB Source Output2]"
+              refId="Package\Load Contact Method.Paths[OLE DB Source Output4]"
               endId="Package\Load Contact Method\CONTACT_METHOD_TYPE_CODE - WORKEMAIL.Inputs[Derived Column Input]"
               name="OLE DB Source Output"
               startId="Package\Load Contact Method\PAM_INTEREST_HOLDER - EMAIL.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\Load Contact Method.Paths[OLE DB Source Output3]"
-              endId="Package\Load Contact Method\Data Conversion 2.Inputs[Data Conversion Input]"
-              name="OLE DB Source Output"
-              startId="Package\Load Contact Method\PAM_INTEREST_HOLDER - FAX_NO.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\Load Contact Method.Paths[Union All Output 1]"
               endId="Package\Load Contact Method\ADDRESS ID.Inputs[Lookup Input]"
@@ -5289,7 +5271,7 @@ where [refTable].[SURNAME] = ? and [refTable].[FIRST_NAME] = ? and [refTable].[M
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{302942B2-7C84-4CB4-8D74-886178A6FA3A}"
+          SQLTask:Connection="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}"
           SQLTask:SqlStatementSource="UPDATE [dbo].[PIMS_PROPERTY] SET [BOUNDARY] = (SELECT [SHAPE] FROM [pmbc].[PMBC_PARCEL_POLYGON_FABRIC] WHERE [pmbc].[PMBC_PARCEL_POLYGON_FABRIC].[PID_NUMBER] = [dbo].[PIMS_PROPERTY].[PID]), [concurrency_control_number] = [concurrency_control_number] + 1;&#xA;&#xA;UPDATE dbo.PIMS_PROPERTY SET LOCATION = BOUNDARY.STCentroid(), CONCURRENCY_CONTROL_NUMBER = CONCURRENCY_CONTROL_NUMBER + 1;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -5740,8 +5722,8 @@ where [refTable].[DESCRIPTION] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Interest Holder Addresses\COUNTRY_ID.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -5880,8 +5862,8 @@ where [refTable].[DESCRIPTION] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Interest Holder Addresses\PAM_INTEREST_HOLDER.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PAIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PAIMS]"
+                  connectionManagerID="{0E2A0394-5DAC-4123-B4F8-D304FF1599AE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[kangaroo.th.gov.bc.ca.PAIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -6202,8 +6184,8 @@ where [refTable].[DESCRIPTION] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -6518,8 +6500,8 @@ where [refTable].[PROVINCE_STATE_CODE] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Interest Holder Addresses\PROVINCE_STATE_ID.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -7402,8 +7384,8 @@ where [refTable].[STREET_ADDRESS_1] = ? and [refTable].[STREET_ADDRESS_2] = ? an
               <connections>
                 <connection
                   refId="Package\Load Interest Holder Persons and Organizations\ADDRESS_ID.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -7960,8 +7942,8 @@ where [refTable].[DESCRIPTION] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Interest Holder Persons and Organizations\COUNTRY_ID.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -8107,8 +8089,8 @@ where [refTable].[DESCRIPTION] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -8392,8 +8374,8 @@ where [refTable].[DESCRIPTION] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 2.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -8737,8 +8719,8 @@ where [refTable].[DESCRIPTION] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 3.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -9247,8 +9229,8 @@ where [refTable].[DESCRIPTION] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Interest Holder Persons and Organizations\PAM_INTEREST_HOLDER.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PAIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PAIMS]"
+                  connectionManagerID="{0E2A0394-5DAC-4123-B4F8-D304FF1599AE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[kangaroo.th.gov.bc.ca.PAIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -9617,8 +9599,8 @@ where [refTable].[DESCRIPTION] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Interest Holder Persons and Organizations\PIMS_ORGANIZATIION.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -9894,8 +9876,8 @@ where [refTable].[DESCRIPTION] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Interest Holder Persons and Organizations\PIMS_PERSON.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -10139,7 +10121,7 @@ where [refTable].[PROVINCE_STATE_CODE] = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PROVINCE_STATE_ID" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="COUNTRY_ID" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PROVINCE_STATE_CODE" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DESCRIPTION" dataType="DT_WSTR" length="200" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="IS_DISABLED" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DISPLAY_ORDER" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CONCURRENCY_CONTROL_NUMBER" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DB_CREATE_TIMESTAMP" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DB_CREATE_USERID" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DB_LAST_UPDATE_TIMESTAMP" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DB_LAST_UPDATE_USERID" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PROVINCE_STATE_ID" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="COUNTRY_ID" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PROVINCE_STATE_CODE" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DESCRIPTION" dataType="DT_WSTR" length="200" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DISPLAY_ORDER" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="IS_DISABLED" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CONCURRENCY_CONTROL_NUMBER" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DB_CREATE_TIMESTAMP" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DB_CREATE_USERID" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DB_LAST_UPDATE_TIMESTAMP" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DB_LAST_UPDATE_USERID" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
@@ -10157,8 +10139,8 @@ where [refTable].[PROVINCE_STATE_CODE] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Interest Holder Persons and Organizations\PROVINCE_STATE_ID.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -11144,19 +11126,19 @@ where [refTable].[PROVINCE_STATE_CODE] = ?</property>
               startId="Package\Load Interest Holder Persons and Organizations\ADDRESS_ID.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Load Interest Holder Persons and Organizations.Paths[Lookup No Match Output2]"
-              endId="Package\Load Interest Holder Persons and Organizations\Canada.Inputs[Derived Column Input]"
-              name="Lookup No Match Output"
-              startId="Package\Load Interest Holder Persons and Organizations\COUNTRY_ID.Outputs[Lookup No Match Output]" />
-            <path
-              refId="Package\Load Interest Holder Persons and Organizations.Paths[Lookup No Match Output]"
               endId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input]"
               name="Lookup No Match Output"
               startId="Package\Load Interest Holder Persons and Organizations\ADDRESS_ID.Outputs[Lookup No Match Output]" />
             <path
-              refId="Package\Load Interest Holder Persons and Organizations.Paths[Lookup No Match Output1]"
+              refId="Package\Load Interest Holder Persons and Organizations.Paths[Lookup No Match Output]"
               endId="Package\Load Interest Holder Persons and Organizations\BC.Inputs[Derived Column Input]"
               name="Lookup No Match Output"
               startId="Package\Load Interest Holder Persons and Organizations\PROVINCE_STATE_ID.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Load Interest Holder Persons and Organizations.Paths[Lookup No Match Output1]"
+              endId="Package\Load Interest Holder Persons and Organizations\Canada.Inputs[Derived Column Input]"
+              name="Lookup No Match Output"
+              startId="Package\Load Interest Holder Persons and Organizations\COUNTRY_ID.Outputs[Lookup No Match Output]" />
             <path
               refId="Package\Load Interest Holder Persons and Organizations.Paths[Multicast Output 1]"
               endId="Package\Load Interest Holder Persons and Organizations\PIMS_PERSON.Inputs[OLE DB Destination Input]"
@@ -11280,8 +11262,8 @@ where [refTable].[STREET_ADDRESS_1] = ? and [refTable].[MUNICIPALITY_NAME] = ?</
               <connections>
                 <connection
                   refId="Package\Load Properties\Address Id, Region and District Code.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -11778,8 +11760,7 @@ where [refTable].[STREET_ADDRESS_1] = ? and [refTable].[MUNICIPALITY_NAME] = ?</
                   <inputColumns>
                     <inputColumn
                       refId="Package\Load Properties\Data Conversion.Inputs[Data Conversion Input].Columns[PROPERTY_AREA_UNIT_TYPE_CODE]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
+                      cachedDataType="wstr"
                       cachedLength="2"
                       cachedName="PROPERTY_AREA_UNIT_TYPE_CODE"
                       lineageId="Package\Load Properties\Lookup.Outputs[Lookup Match Output].Columns[PROPERTY_AREA_UNIT_TYPE_CODE]" />
@@ -12067,7 +12048,7 @@ where "refTable"."PROPERTY_ID" = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="TAKE_ID" dataType="DT_NUMERIC" length="0" precision="10" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PROPERTY_ID" dataType="DT_NUMERIC" length="0" precision="10" scale="0" codePage="0"/&gt;&lt;referenceColumn name="AREA" dataType="DT_NUMERIC" length="0" precision="8" scale="4" codePage="0"/&gt;&lt;referenceColumn name="AREA_UNIT_CODE" dataType="DT_STR" length="2" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="LAST_UPDATE_DATETIME" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LAST_UPDATE_USERID" dataType="DT_STR" length="30" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="TAKE_ID" dataType="DT_NUMERIC" length="0" precision="10" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PROPERTY_ID" dataType="DT_NUMERIC" length="0" precision="10" scale="0" codePage="0"/&gt;&lt;referenceColumn name="AREA" dataType="DT_NUMERIC" length="0" precision="8" scale="4" codePage="0"/&gt;&lt;referenceColumn name="AREA_UNIT_CODE" dataType="DT_WSTR" length="2" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LAST_UPDATE_DATETIME" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LAST_UPDATE_USERID" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
@@ -12085,8 +12066,8 @@ where "refTable"."PROPERTY_ID" = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Properties\Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PAIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PAIMS]"
+                  connectionManagerID="{0E2A0394-5DAC-4123-B4F8-D304FF1599AE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[kangaroo.th.gov.bc.ca.PAIMS_DEV]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -12125,22 +12106,6 @@ where "refTable"."PROPERTY_ID" = ?</property>
                   synchronousInputId="Package\Load Properties\Lookup.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Properties\Lookup.Outputs[Lookup Match Output].Columns[PROPERTY_AREA_UNIT_TYPE_CODE]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Copy Column"
-                      length="2"
-                      lineageId="Package\Load Properties\Lookup.Outputs[Lookup Match Output].Columns[PROPERTY_AREA_UNIT_TYPE_CODE]"
-                      name="PROPERTY_AREA_UNIT_TYPE_CODE"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">AREA_UNIT_CODE</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
                       refId="Package\Load Properties\Lookup.Outputs[Lookup Match Output].Columns[LAND_AREA]"
                       dataType="numeric"
                       errorOrTruncationOperation="Copy Column"
@@ -12154,6 +12119,21 @@ where "refTable"."PROPERTY_ID" = ?</property>
                           dataType="System.String"
                           description="Specifies the column in the reference table from which a column is copied."
                           name="CopyFromReferenceColumn">AREA</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Properties\Lookup.Outputs[Lookup Match Output].Columns[PROPERTY_AREA_UNIT_TYPE_CODE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="2"
+                      lineageId="Package\Load Properties\Lookup.Outputs[Lookup Match Output].Columns[PROPERTY_AREA_UNIT_TYPE_CODE]"
+                      name="PROPERTY_AREA_UNIT_TYPE_CODE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">AREA_UNIT_CODE</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -12208,7 +12188,7 @@ where "refTable"."PROPERTY_ID" = ?</property>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">"APP_PAM_MASKED"."PAM_PROPERTY"</property>
+                  name="OpenRowset">"APP_PAM"."PAM_PROPERTY"</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -12245,8 +12225,8 @@ WHERE PID_NO IS NOT NULL</property>
               <connections>
                 <connection
                   refId="Package\Load Properties\PAM Property.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PAIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PAIMS]"
+                  connectionManagerID="{0E2A0394-5DAC-4123-B4F8-D304FF1599AE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[kangaroo.th.gov.bc.ca.PAIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -12739,8 +12719,8 @@ WHERE PID_NO IS NOT NULL</property>
               <connections>
                 <connection
                   refId="Package\Load Properties\PIMS_PROPERTY.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -13161,7 +13141,7 @@ WHERE PID_NO IS NOT NULL</property>
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">3</property>
+                  typeConverter="AccessMode">0</property>
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
@@ -13182,8 +13162,8 @@ WHERE PID_NO IS NOT NULL</property>
               <connections>
                 <connection
                   refId="Package\Load Properties\Property Match Fail Output.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -13290,12 +13270,12 @@ WHERE PID_NO IS NOT NULL</property>
                     <externalMetadataColumn
                       refId="Package\Load Properties\Property Match Fail Output.Inputs[OLE DB Destination Input].ExternalColumns[CIVIC_ADDRESS]"
                       dataType="wstr"
-                      length="200"
+                      length="100"
                       name="CIVIC_ADDRESS" />
                     <externalMetadataColumn
                       refId="Package\Load Properties\Property Match Fail Output.Inputs[OLE DB Destination Input].ExternalColumns[MUNICIPALITY_NAME]"
                       dataType="wstr"
-                      length="200"
+                      length="40"
                       name="MUNICIPALITY_NAME" />
                     <externalMetadataColumn
                       refId="Package\Load Properties\Property Match Fail Output.Inputs[OLE DB Destination Input].ExternalColumns[DESCRIPTION]"
@@ -13318,26 +13298,26 @@ WHERE PID_NO IS NOT NULL</property>
                     <externalMetadataColumn
                       refId="Package\Load Properties\Property Match Fail Output.Inputs[OLE DB Destination Input].ExternalColumns[ZONING]"
                       dataType="wstr"
-                      length="50"
+                      length="2"
                       name="ZONING" />
                     <externalMetadataColumn
                       refId="Package\Load Properties\Property Match Fail Output.Inputs[OLE DB Destination Input].ExternalColumns[ZONING_POTENTIAL]"
                       dataType="wstr"
-                      length="50"
+                      length="30"
                       name="ZONING_POTENTIAL" />
                     <externalMetadataColumn
                       refId="Package\Load Properties\Property Match Fail Output.Inputs[OLE DB Destination Input].ExternalColumns[PROPERTY_ID]"
-                      dataType="i8"
+                      dataType="i4"
                       name="PROPERTY_ID" />
                     <externalMetadataColumn
                       refId="Package\Load Properties\Property Match Fail Output.Inputs[OLE DB Destination Input].ExternalColumns[PROPERTY_TYPE_CODE]"
                       dataType="wstr"
-                      length="20"
+                      length="4"
                       name="PROPERTY_TYPE_CODE" />
                     <externalMetadataColumn
                       refId="Package\Load Properties\Property Match Fail Output.Inputs[OLE DB Destination Input].ExternalColumns[PROPERTY_CLASSIFICATION_TYPE_CODE]"
                       dataType="wstr"
-                      length="20"
+                      length="8"
                       name="PROPERTY_CLASSIFICATION_TYPE_CODE" />
                     <externalMetadataColumn
                       refId="Package\Load Properties\Property Match Fail Output.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
@@ -14623,8 +14603,8 @@ WHERE PID_NO IS NOT NULL</property>
               <connections>
                 <connection
                   refId="Package\Load Property Addresses\PAM_PROPERTY.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PAIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PAIMS]"
+                  connectionManagerID="{0E2A0394-5DAC-4123-B4F8-D304FF1599AE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[kangaroo.th.gov.bc.ca.PAIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -15212,8 +15192,8 @@ WHERE PID_NO IS NOT NULL</property>
               <connections>
                 <connection
                   refId="Package\Load Property Addresses\PIMS ADDRESS.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PIMS]"
-                  connectionManagerRefId="Package.ConnectionManagers[PIMS]"
+                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -15225,25 +15205,6 @@ WHERE PID_NO IS NOT NULL</property>
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
-                    <inputColumn
-                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[ADDRESS_USAGE_TYPE_CODE]"
-                      cachedDataType="wstr"
-                      cachedLength="8"
-                      cachedName="ADDRESS_USAGE_TYPE_CODE"
-                      externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[ADDRESS_USAGE_TYPE_CODE]"
-                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[ADDRESS_USAGE_TYPE_CODE]" />
-                    <inputColumn
-                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[PROVINCE_STATE_ID]"
-                      cachedDataType="ui2"
-                      cachedName="PROVINCE_STATE_ID"
-                      externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[PROVINCE_STATE_ID]"
-                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[PROVINCE_STATE_ID]" />
-                    <inputColumn
-                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[COUNTRY_ID]"
-                      cachedDataType="ui2"
-                      cachedName="COUNTRY_ID"
-                      externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[COUNTRY_ID]"
-                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[COUNTRY_ID]" />
                     <inputColumn
                       refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[APP_CREATE_USERID]"
                       cachedDataType="wstr"
@@ -15273,12 +15234,45 @@ WHERE PID_NO IS NOT NULL</property>
                       externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[APP_LAST_UPDATE_USER_DIRECTORY]"
                       lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_LAST_UPDATE_USER_DIRECTORY]" />
                     <inputColumn
+                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[ADDRESS_USAGE_TYPE_CODE]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="ADDRESS_USAGE_TYPE_CODE"
+                      externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[ADDRESS_USAGE_TYPE_CODE]"
+                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[ADDRESS_USAGE_TYPE_CODE]" />
+                    <inputColumn
+                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[COUNTRY_ID]"
+                      cachedDataType="ui2"
+                      cachedName="COUNTRY_ID"
+                      externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[COUNTRY_ID]"
+                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[COUNTRY_ID]" />
+                    <inputColumn
+                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[PROVINCE_STATE_ID]"
+                      cachedDataType="ui2"
+                      cachedName="PROVINCE_STATE_ID"
+                      externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[PROVINCE_STATE_ID]"
+                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[PROVINCE_STATE_ID]" />
+                    <inputColumn
                       refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[CIVIC_ADDRESS]"
                       cachedDataType="wstr"
                       cachedLength="100"
                       cachedName="CIVIC_ADDRESS"
                       externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[STREET_ADDRESS_1]"
                       lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[CIVIC_ADDRESS]" />
+                    <inputColumn
+                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[REGION_NO]"
+                      cachedDataType="numeric"
+                      cachedName="REGION_NO"
+                      cachedPrecision="2"
+                      externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[REGION_CODE]"
+                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[REGION_NO]" />
+                    <inputColumn
+                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[DISTRICT_NO]"
+                      cachedDataType="numeric"
+                      cachedName="DISTRICT_NO"
+                      cachedPrecision="2"
+                      externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[DISTRICT_CODE]"
+                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[DISTRICT_NO]" />
                     <inputColumn
                       refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[CITY]"
                       cachedDataType="wstr"
@@ -15294,11 +15288,6 @@ WHERE PID_NO IS NOT NULL</property>
                       dataType="i8"
                       name="ADDRESS_ID" />
                     <externalMetadataColumn
-                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[ADDRESS_USAGE_TYPE_CODE]"
-                      dataType="wstr"
-                      length="20"
-                      name="ADDRESS_USAGE_TYPE_CODE" />
-                    <externalMetadataColumn
                       refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[REGION_CODE]"
                       dataType="i2"
                       name="REGION_CODE" />
@@ -15306,51 +15295,6 @@ WHERE PID_NO IS NOT NULL</property>
                       refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[DISTRICT_CODE]"
                       dataType="i2"
                       name="DISTRICT_CODE" />
-                    <externalMetadataColumn
-                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[PROVINCE_STATE_ID]"
-                      dataType="i2"
-                      name="PROVINCE_STATE_ID" />
-                    <externalMetadataColumn
-                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[COUNTRY_ID]"
-                      dataType="i2"
-                      name="COUNTRY_ID" />
-                    <externalMetadataColumn
-                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[STREET_ADDRESS_1]"
-                      dataType="wstr"
-                      length="200"
-                      name="STREET_ADDRESS_1" />
-                    <externalMetadataColumn
-                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[STREET_ADDRESS_2]"
-                      dataType="wstr"
-                      length="200"
-                      name="STREET_ADDRESS_2" />
-                    <externalMetadataColumn
-                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[STREET_ADDRESS_3]"
-                      dataType="wstr"
-                      length="200"
-                      name="STREET_ADDRESS_3" />
-                    <externalMetadataColumn
-                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[MUNICIPALITY_NAME]"
-                      dataType="wstr"
-                      length="200"
-                      name="MUNICIPALITY_NAME" />
-                    <externalMetadataColumn
-                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[POSTAL_CODE]"
-                      dataType="wstr"
-                      length="20"
-                      name="POSTAL_CODE" />
-                    <externalMetadataColumn
-                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[LATITUDE]"
-                      dataType="numeric"
-                      name="LATITUDE"
-                      precision="8"
-                      scale="6" />
-                    <externalMetadataColumn
-                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[LONGITUDE]"
-                      dataType="numeric"
-                      name="LONGITUDE"
-                      precision="9"
-                      scale="6" />
                     <externalMetadataColumn
                       refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[CONCURRENCY_CONTROL_NUMBER]"
                       dataType="i8"
@@ -15409,6 +15353,56 @@ WHERE PID_NO IS NOT NULL</property>
                       dataType="wstr"
                       length="30"
                       name="DB_LAST_UPDATE_USERID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[ADDRESS_USAGE_TYPE_CODE]"
+                      dataType="wstr"
+                      length="20"
+                      name="ADDRESS_USAGE_TYPE_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[PROVINCE_STATE_ID]"
+                      dataType="i2"
+                      name="PROVINCE_STATE_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[COUNTRY_ID]"
+                      dataType="i2"
+                      name="COUNTRY_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[STREET_ADDRESS_1]"
+                      dataType="wstr"
+                      length="200"
+                      name="STREET_ADDRESS_1" />
+                    <externalMetadataColumn
+                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[STREET_ADDRESS_2]"
+                      dataType="wstr"
+                      length="200"
+                      name="STREET_ADDRESS_2" />
+                    <externalMetadataColumn
+                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[STREET_ADDRESS_3]"
+                      dataType="wstr"
+                      length="200"
+                      name="STREET_ADDRESS_3" />
+                    <externalMetadataColumn
+                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[MUNICIPALITY_NAME]"
+                      dataType="wstr"
+                      length="200"
+                      name="MUNICIPALITY_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[POSTAL_CODE]"
+                      dataType="wstr"
+                      length="20"
+                      name="POSTAL_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[LATITUDE]"
+                      dataType="numeric"
+                      name="LATITUDE"
+                      precision="8"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[LONGITUDE]"
+                      dataType="numeric"
+                      name="LONGITUDE"
+                      precision="9"
+                      scale="6" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -15519,7 +15513,7 @@ WHERE PID_NO IS NOT NULL</property>
         <NodeLayout
           Size="133,42"
           Id="Package\Clear Slate"
-          TopLeft="233,23" />
+          TopLeft="241,23" />
         <NodeLayout
           Size="184,42"
           Id="Package\Load Contact Method"
@@ -15612,30 +15606,18 @@ WHERE PID_NO IS NOT NULL</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="299.5,65">
+          TopLeft="309.333328929212,65">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="11.666657858425,37.400000805855"
+              EndConnector="0,37.400000805855"
               Start="0,0"
-              End="11.666657858425,29.900000805855">
+              End="0,29.900000805855">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14.7000004029275" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,14.7000004029275"
-                    Point2="0,18.7000004029275"
-                    Point3="4,18.7000004029275" />
-                  <mssgle:LineSegment
-                    End="7.66665785842497,18.7000004029275" />
-                  <mssgle:CubicBezierSegment
-                    Point1="7.66665785842497,18.7000004029275"
-                    Point2="11.666657858425,18.7000004029275"
-                    Point3="11.666657858425,22.7000004029275" />
-                  <mssgle:LineSegment
-                    End="11.666657858425,29.900000805855" />
+                    End="0,29.900000805855" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -15777,7 +15759,7 @@ WHERE PID_NO IS NOT NULL</property>
           Id="Package\Load Contact Method\CONTACT_METHOD_TYPE_CODE - WORKEMAIL"
           TopLeft="1905.1666241818,301.399999338786" />
         <NodeLayout
-          Size="151,43"
+          Size="139,42"
           Id="Package\Load Contact Method\PERSON ID"
           TopLeft="1106.15074935571,679.8579433445" />
         <NodeLayout
@@ -15820,50 +15802,6 @@ WHERE PID_NO IS NOT NULL</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Contact Method.Paths[OLE DB Source Output4]"
-          TopLeft="1696.47619829102,205">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,27"
-              Start="0,0"
-              End="0,19.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,19.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Contact Method.Paths[OLE DB Source Output3]"
-          TopLeft="1280.48811086776,207.304762021852">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,24.695237978148"
-              Start="0,0"
-              End="0,17.195237978148">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,17.195237978148" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Contact Method.Paths[OLE DB Source Output2]"
           TopLeft="2093.7166253739,204.485715773446">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -15885,7 +15823,7 @@ WHERE PID_NO IS NOT NULL</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Contact Method.Paths[OLE DB Source Output1]"
+          Id="Package\Load Contact Method.Paths[OLE DB Source Output3]"
           TopLeft="881.619055433878,209.190476307566">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -15907,7 +15845,7 @@ WHERE PID_NO IS NOT NULL</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Contact Method.Paths[OLE DB Source Output]"
+          Id="Package\Load Contact Method.Paths[OLE DB Source Output2]"
           TopLeft="464.726198291021,204.733333450423">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -15920,6 +15858,50 @@ WHERE PID_NO IS NOT NULL</property>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,18.766666549577" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Contact Method.Paths[OLE DB Source Output1]"
+          TopLeft="1696.47619829102,205">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27"
+              Start="0,0"
+              End="0,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Contact Method.Paths[OLE DB Source Output]"
+          TopLeft="1280.48811086776,207.304762021852">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24.695237978148"
+              Start="0,0"
+              End="0,17.195237978148">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.195237978148" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -15954,54 +15936,66 @@ WHERE PID_NO IS NOT NULL</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Contact Method.Paths[Lookup No Match Output]"
-          TopLeft="1257.15074935571,702.607543100822">
+          TopLeft="1245.15074935571,702.357543100821">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="158.563536358574,0"
+              EndConnector="170.56353635858,0"
               Start="0,0"
-              End="151.063536358574,0">
+              End="163.06353635858,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="151.063536358574,0" />
+                    End="163.06353635858,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="19.725381460537,5,111.6127734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Contact Method.Paths[Lookup Match Output2]"
-          TopLeft="1154.94441464764,722.8579433445">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,101.049999963844"
-              Start="0,0"
-              End="0,93.5499999638441">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,93.5499999638441" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,40.9703124819221,96.3827734375,11.609375"
+              BoundingBox="25.72538146054,5,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Contact Method.Paths[Lookup Match Output1]"
+          TopLeft="1175.65074935571,721.8579433445">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-23.5793360828002,102.049999963844"
+              Start="0,0"
+              End="-23.5793360828002,94.549999963844">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.024999981922" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,47.024999981922"
+                    Point2="0,51.024999981922"
+                    Point3="-4,51.024999981922" />
+                  <mssgle:LineSegment
+                    End="-19.5793360828002,51.024999981922" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-19.5793360828002,51.024999981922"
+                    Point2="-23.5793360828002,51.024999981922"
+                    Point3="-23.5793360828002,55.024999981922" />
+                  <mssgle:LineSegment
+                    End="-23.5793360828002,94.549999963844" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-59.9810547601501,56.024999981922,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Contact Method.Paths[Lookup Match Output]"
           TopLeft="1154.84520842538,866.907943308344">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -16021,30 +16015,6 @@ WHERE PID_NO IS NOT NULL</property>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="-48.19138671875,13.1167417946278,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Contact Method.Paths[Lookup Match Output]"
-          TopLeft="1178.15868607337,624.504767332229">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,55.3531760122717"
-              Start="0,0"
-              End="0,47.8531760122717">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,47.8531760122717" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,18.1219005061359,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -16328,6 +16298,30 @@ WHERE PID_NO IS NOT NULL</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Contact Method.Paths[Lookup Match Output2]"
+          TopLeft="1175.15868607337,624.504767332229">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55.353176012271"
+              Start="0,0"
+              End="0,47.853176012271">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.853176012271" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,18.1219005061355,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -16371,6 +16365,11 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
@@ -16379,7 +16378,7 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -16389,7 +16388,7 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -16401,6 +16400,11 @@ WHERE PID_NO IS NOT NULL</property>
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -16418,7 +16422,7 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -16428,7 +16432,7 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -16454,7 +16458,7 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -16464,7 +16468,7 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -16644,9 +16648,7 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16668,9 +16670,7 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16692,9 +16692,7 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16728,9 +16726,7 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16752,9 +16748,7 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16776,9 +16770,7 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16800,9 +16792,7 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16850,7 +16840,7 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -16860,7 +16850,7 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -16873,7 +16863,7 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -16883,7 +16873,7 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -17149,6 +17139,30 @@ WHERE PID_NO IS NOT NULL</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Interest Holder Persons and Organizations.Paths[Lookup No Match Output2]"
+          TopLeft="609,537.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="154.75,0"
+              Start="0,0"
+              End="147.25,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="147.25,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="17.81861328125,5,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Interest Holder Persons and Organizations.Paths[Lookup No Match Output1]"
           TopLeft="616,112.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -17172,7 +17186,7 @@ WHERE PID_NO IS NOT NULL</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Interest Holder Persons and Organizations.Paths[Lookup No Match Output1]"
+          Id="Package\Load Interest Holder Persons and Organizations.Paths[Lookup No Match Output]"
           TopLeft="574.666666666667,317">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -17204,30 +17218,6 @@ WHERE PID_NO IS NOT NULL</property>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="78.8602799479165,20.6229022704837,111.6127734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Interest Holder Persons and Organizations.Paths[Lookup No Match Output]"
-          TopLeft="609,537.25">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="154.75,0"
-              Start="0,0"
-              End="147.25,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="147.25,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="17.81861328125,5,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -17511,7 +17501,7 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -17521,7 +17511,7 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -17534,7 +17524,7 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -17544,7 +17534,7 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -17557,7 +17547,7 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -17567,7 +17557,7 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -17597,9 +17587,17 @@ WHERE PID_NO IS NOT NULL</property>
           Id="Package\Load Properties\Lookup"
           TopLeft="1051.33334015475,270.066667128139" />
         <NodeLayout
+          Size="189,42"
+          Id="Package\Load Properties\PIMS_PROPERTY"
+          TopLeft="385.166629943585,399.133340413836" />
+        <NodeLayout
           Size="307,42"
           Id="Package\Load Properties\TM as PROPERTY_TENURE_TYPE_CODE"
           TopLeft="1299.8333334989,267.266667107476" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\Load Properties\Property Match Fail Output"
+          TopLeft="933,41" />
         <NodeLayout
           Size="320,42"
           Id="Package\Load Properties\Crude Null Correction for Region and District"
@@ -17629,21 +17627,13 @@ WHERE PID_NO IS NOT NULL</property>
           Id="Package\Load Properties\PROPERTY_DATA_SOURCE_TYPE"
           TopLeft="42.8332959479781,271.333336942461" />
         <NodeLayout
-          Size="189,42"
-          Id="Package\Load Properties\PIMS_PROPERTY"
-          TopLeft="385.166629943585,399.133340413836" />
-        <NodeLayout
-          Size="210,42"
-          Id="Package\Load Properties\Property Match Fail Output"
-          TopLeft="933,41" />
+          Size="161,42"
+          Id="Package\Load Properties\Data Conversion"
+          TopLeft="874,217" />
         <NodeLayout
           Size="123,42"
           Id="Package\Load Properties\Union All"
           TopLeft="703,267" />
-        <NodeLayout
-          Size="161,42"
-          Id="Package\Load Properties\Data Conversion"
-          TopLeft="874,217" />
         <NodeLayout
           Size="259,42"
           Id="Package\Load Properties\Address Id, Region and District Code"
@@ -17652,6 +17642,42 @@ WHERE PID_NO IS NOT NULL</property>
           Size="154,42"
           Id="Package\Load Properties\Audit Trail"
           TopLeft="101.499977648259,401.266664586597" />
+        <EdgeLayout
+          Id="Package\Load Properties.Paths[Lookup No Match Output]"
+          TopLeft="1108.83334015475,312.066667128139">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-149.500000198678,72.533332272635"
+              Start="0,0"
+              End="-149.500000198678,65.033332272635">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.164007548746" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39.164007548746"
+                    Point2="0,43.164007548746"
+                    Point3="-4,43.164007548746" />
+                  <mssgle:LineSegment
+                    End="-145.500000198678,43.164007548746" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-145.500000198678,43.164007548746"
+                    Point2="-149.500000198678,43.164007548746"
+                    Point3="-149.500000198678,47.164007548746" />
+                  <mssgle:LineSegment
+                    End="-149.500000198678,65.033332272635" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-130.556386818089,48.164007548746,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Properties.Paths[Lookup Match Output]"
           TopLeft="1163.83331998852,174.366670341227">
@@ -17967,42 +17993,6 @@ WHERE PID_NO IS NOT NULL</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Properties.Paths[Lookup No Match Output]"
-          TopLeft="1108.83334015475,312.066667128139">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-149.500000198678,72.533332272635"
-              Start="0,0"
-              End="-149.500000198678,65.033332272635">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,39.164007548746" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,39.164007548746"
-                    Point2="0,43.164007548746"
-                    Point3="-4,43.164007548746" />
-                  <mssgle:LineSegment
-                    End="-145.500000198678,43.164007548746" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-145.500000198678,43.164007548746"
-                    Point2="-149.500000198678,43.164007548746"
-                    Point3="-149.500000198678,47.164007548746" />
-                  <mssgle:LineSegment
-                    End="-149.500000198678,65.033332272635" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-130.556386818089,48.164007548746,111.6127734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Load Properties.Paths[Lookup Match Output1]"
           TopLeft="1051.33334015475,291.066667128139">
           <EdgeLayout.Curve>
@@ -18041,7 +18031,7 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -18051,23 +18041,10 @@ WHERE PID_NO IS NOT NULL</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Properties\PAM Property">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -18086,6 +18063,19 @@ WHERE PID_NO IS NOT NULL</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load Properties\Property Match Fail Output">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Properties\PAM Property">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -18124,7 +18114,7 @@ WHERE PID_NO IS NOT NULL</property>
     design-time-name="Package\Load Property Addresses">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="162,42"
           Id="Package\Load Property Addresses\PIMS ADDRESS"
@@ -18156,9 +18146,7 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -18180,9 +18168,7 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
