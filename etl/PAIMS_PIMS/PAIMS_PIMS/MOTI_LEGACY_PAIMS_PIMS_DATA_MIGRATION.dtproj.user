@@ -11,8 +11,20 @@
         <ServerName>ssistst.th.gov.bc.ca</ServerName>
         <PathOnServer>/SSISDB/PIMS_DEV/PAIMS_PIMS</PathOnServer>
         <Run64BitRuntime>false</Run64BitRuntime>
-        <UserIDs />
-        <UserPasswords />
+        <UserIDs>
+          <ConfigurationSetting>
+            <Id>{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}</Id>
+            <Name>{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA1mUTV2pQrESdnKDHC1rXUwAAAABOAAAAewBCAEYANwA4ADcANABGADEALQA5ADcARQA3AC0ANAAzAEIAMAAtAEEANwAyAEQALQAxAEQAMgBFADgAMwBCADgANgA4AEEARgB9AAAAEGYAAAABAAAgAAAAKcejl1d5OEry3zmaxhb8uMLJwDk8DV+rZqidThcN/xYAAAAADoAAAAACAAAgAAAAs+OwY8XgOnCw7djR4Iox0J3v0p29MIPcKes4JBNEuHMgAAAARH/6xefOYxfuwcIFLCirX38a02UlsUyrWnUa5Vh0VpNAAAAAPbm0Z9sb19T4r1lC6LS/nSgmctKnG+gNhd2lDqF598m2bORfXQFUHe6c1LTgYhtbb/tBTv+OstnekHpq5T0g4A==</Value>
+          </ConfigurationSetting>
+        </UserIDs>
+        <UserPasswords>
+          <ConfigurationSetting>
+            <Id>{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}</Id>
+            <Name>{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA1mUTV2pQrESdnKDHC1rXUwAAAABOAAAAewBCAEYANwA4ADcANABGADEALQA5ADcARQA3AC0ANAAzAEIAMAAtAEEANwAyAEQALQAxAEQAMgBFADgAMwBCADgANgA4AEEARgB9AAAAEGYAAAABAAAgAAAAzkjcJh4v0IWdhToxqr8XbYt3K04FjCI8zMzaL8y4RLcAAAAADoAAAAACAAAgAAAAySIJlT/+ubh9xIuBeSdLKf6Lm9wyZJyYgWnhDcWgsCEwAAAAj9M1FKlP2BrNaX0rarhET95/FDaePGOAHI9L0tcV1Tbq3s5SSc0jdPDIHETWVjqLQAAAAJ8Q3iB2wwCrbAOJRx6KWZz/R7AZ7o51wGsFTZy/jLKMdUIKE9cP4nnOooY8GrovYm59JHGN9Z11LN52nRVfFoY=</Value>
+          </ConfigurationSetting>
+        </UserPasswords>
         <OfflineMode>false</OfflineMode>
         <ProgressReporting>true</ProgressReporting>
         <ParameterConfigurationSensitiveValues>

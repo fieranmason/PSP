@@ -11,9 +11,8 @@
   DTS:LocaleID="4105"
   DTS:ObjectName="Package2"
   DTS:PackageType="5"
-  DTS:ProtectionLevel="0"
-  DTS:VersionBuild="199"
-  DTS:VersionGUID="{48C58438-10BE-4476-8653-D127CE02D1AA}">
+  DTS:VersionBuild="205"
+  DTS:VersionGUID="{50483B21-2647-443D-BE1C-09C628C501EF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -5227,29 +5226,29 @@ where [refTable].[SURNAME] = ? and [refTable].[FIRST_NAME] = ? and [refTable].[M
               startId="Package\Load Contact Method\ORGANIZATION ID.Outputs[Lookup No Match Output]" />
             <path
               refId="Package\Load Contact Method.Paths[OLE DB Source Output4]"
-              endId="Package\Load Contact Method\CONTACT_METHOD_TYPE_CODE - WORKEMAIL.Inputs[Derived Column Input]"
-              name="OLE DB Source Output"
-              startId="Package\Load Contact Method\PAM_INTEREST_HOLDER - EMAIL.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\Load Contact Method.Paths[OLE DB Source Output]"
-              endId="Package\Load Contact Method\Data Conversion 2.Inputs[Data Conversion Input]"
-              name="OLE DB Source Output"
-              startId="Package\Load Contact Method\PAM_INTEREST_HOLDER - FAX_NO.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\Load Contact Method.Paths[OLE DB Source Output1]"
               endId="Package\Load Contact Method\Data Conversion 3.Inputs[Data Conversion Input]"
               name="OLE DB Source Output"
               startId="Package\Load Contact Method\PAM_INTEREST_HOLDER - CELL_PHONE_NUMBER.Outputs[OLE DB Source Output]" />
             <path
-              refId="Package\Load Contact Method.Paths[OLE DB Source Output2]"
+              refId="Package\Load Contact Method.Paths[OLE DB Source Output]"
               endId="Package\Load Contact Method\Data Conversion.Inputs[Data Conversion Input]"
               name="OLE DB Source Output"
               startId="Package\Load Contact Method\PAM_INTEREST_HOLDER - HOME_PHONE_NO.Outputs[OLE DB Source Output]" />
             <path
-              refId="Package\Load Contact Method.Paths[OLE DB Source Output3]"
+              refId="Package\Load Contact Method.Paths[OLE DB Source Output1]"
               endId="Package\Load Contact Method\Data Conversion 1.Inputs[Data Conversion Input]"
               name="OLE DB Source Output"
               startId="Package\Load Contact Method\PAM_INTEREST_HOLDER - WORK_PHONE_NO.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load Contact Method.Paths[OLE DB Source Output2]"
+              endId="Package\Load Contact Method\CONTACT_METHOD_TYPE_CODE - WORKEMAIL.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Contact Method\PAM_INTEREST_HOLDER - EMAIL.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load Contact Method.Paths[OLE DB Source Output3]"
+              endId="Package\Load Contact Method\Data Conversion 2.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Contact Method\PAM_INTEREST_HOLDER - FAX_NO.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\Load Contact Method.Paths[Union All Output 1]"
               endId="Package\Load Contact Method\ADDRESS ID.Inputs[Lookup Input]"
@@ -5811,6 +5810,488 @@ where [refTable].[DESCRIPTION] = ?</property>
               </outputs>
             </component>
             <component
+              refId="Package\Load Interest Holder Addresses\Deduplicarte"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Deduplicarte"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load Interest Holder Addresses\Deduplicarte.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Inputs[Sort Input].Columns[STREET_ADDRESS_1]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="STREET_ADDRESS_1"
+                      lineageId="Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[STREET_ADDRESS_1]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Inputs[Sort Input].Columns[STREET_ADDRESS_2]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="STREET_ADDRESS_2"
+                      lineageId="Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[STREET_ADDRESS_2]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Inputs[Sort Input].Columns[STREET_ADDRESS_3]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="STREET_ADDRESS_3"
+                      lineageId="Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[STREET_ADDRESS_3]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Inputs[Sort Input].Columns[MUNICIPALITY_NAME]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="MUNICIPALITY_NAME"
+                      lineageId="Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[MUNICIPALITY_NAME]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Inputs[Sort Input].Columns[PROVINCE]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="PROVINCE"
+                      lineageId="Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[PROVINCE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">5</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Inputs[Sort Input].Columns[COUNTRY]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="COUNTRY"
+                      lineageId="Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[COUNTRY]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">14</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Inputs[Sort Input].Columns[POSTAL_CODE]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="POSTAL_CODE"
+                      lineageId="Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[POSTAL_CODE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">13</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Inputs[Sort Input].Columns[COUNTRY_ID]"
+                      cachedDataType="i2"
+                      cachedName="COUNTRY_ID"
+                      lineageId="Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[COUNTRY_ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">12</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Inputs[Sort Input].Columns[PROVINCE_STATE_ID]"
+                      cachedDataType="i2"
+                      cachedName="PROVINCE_STATE_ID"
+                      lineageId="Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[PROVINCE_STATE_ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">11</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Inputs[Sort Input].Columns[ADDRESS_USAGE_TYPE_CODE]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="ADDRESS_USAGE_TYPE_CODE"
+                      lineageId="Package\Load Interest Holder Addresses\ADDRESS_USAGE_TYPE_CODE.Outputs[Derived Column Output].Columns[ADDRESS_USAGE_TYPE_CODE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">6</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Inputs[Sort Input].Columns[APP_CREATE_USERID]"
+                      cachedDataType="wstr"
+                      cachedLength="23"
+                      cachedName="APP_CREATE_USERID"
+                      lineageId="Package\Load Interest Holder Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_CREATE_USERID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">7</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Inputs[Sort Input].Columns[APP_CREATE_USER_DIRECTORY]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="APP_CREATE_USER_DIRECTORY"
+                      lineageId="Package\Load Interest Holder Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_CREATE_USER_DIRECTORY]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">8</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Inputs[Sort Input].Columns[APP_LAST_UPDATE_USERID]"
+                      cachedDataType="wstr"
+                      cachedLength="23"
+                      cachedName="APP_LAST_UPDATE_USERID"
+                      lineageId="Package\Load Interest Holder Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_LAST_UPDATE_USERID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">9</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Inputs[Sort Input].Columns[APP_LAST_UPDATE_USER_DIRECTORY]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="APP_LAST_UPDATE_USER_DIRECTORY"
+                      lineageId="Package\Load Interest Holder Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_LAST_UPDATE_USER_DIRECTORY]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">10</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[STREET_ADDRESS_1]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[STREET_ADDRESS_1]"
+                      name="STREET_ADDRESS_1"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[STREET_ADDRESS_1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[STREET_ADDRESS_2]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[STREET_ADDRESS_2]"
+                      name="STREET_ADDRESS_2"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[STREET_ADDRESS_2]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[STREET_ADDRESS_3]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[STREET_ADDRESS_3]"
+                      name="STREET_ADDRESS_3"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[STREET_ADDRESS_3]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[MUNICIPALITY_NAME]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[MUNICIPALITY_NAME]"
+                      name="MUNICIPALITY_NAME"
+                      sortKeyPosition="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[MUNICIPALITY_NAME]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[PROVINCE]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[PROVINCE]"
+                      name="PROVINCE"
+                      sortKeyPosition="5">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[PROVINCE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[COUNTRY]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[COUNTRY]"
+                      name="COUNTRY"
+                      sortKeyPosition="14">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[COUNTRY]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[POSTAL_CODE]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[POSTAL_CODE]"
+                      name="POSTAL_CODE"
+                      sortKeyPosition="13">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[POSTAL_CODE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[COUNTRY_ID]"
+                      dataType="i2"
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[COUNTRY_ID]"
+                      name="COUNTRY_ID"
+                      sortKeyPosition="12">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[COUNTRY_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[PROVINCE_STATE_ID]"
+                      dataType="i2"
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[PROVINCE_STATE_ID]"
+                      name="PROVINCE_STATE_ID"
+                      sortKeyPosition="11">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[PROVINCE_STATE_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[ADDRESS_USAGE_TYPE_CODE]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[ADDRESS_USAGE_TYPE_CODE]"
+                      name="ADDRESS_USAGE_TYPE_CODE"
+                      sortKeyPosition="6">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Interest Holder Addresses\ADDRESS_USAGE_TYPE_CODE.Outputs[Derived Column Output].Columns[ADDRESS_USAGE_TYPE_CODE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[APP_CREATE_USERID]"
+                      dataType="wstr"
+                      length="23"
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[APP_CREATE_USERID]"
+                      name="APP_CREATE_USERID"
+                      sortKeyPosition="7">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Interest Holder Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_CREATE_USERID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[APP_CREATE_USER_DIRECTORY]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[APP_CREATE_USER_DIRECTORY]"
+                      name="APP_CREATE_USER_DIRECTORY"
+                      sortKeyPosition="8">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Interest Holder Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_CREATE_USER_DIRECTORY]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[APP_LAST_UPDATE_USERID]"
+                      dataType="wstr"
+                      length="23"
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[APP_LAST_UPDATE_USERID]"
+                      name="APP_LAST_UPDATE_USERID"
+                      sortKeyPosition="9">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Interest Holder Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_LAST_UPDATE_USERID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[APP_LAST_UPDATE_USER_DIRECTORY]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[APP_LAST_UPDATE_USER_DIRECTORY]"
+                      name="APP_LAST_UPDATE_USER_DIRECTORY"
+                      sortKeyPosition="10">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Interest Holder Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_LAST_UPDATE_USER_DIRECTORY]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Load Interest Holder Addresses\PAM_INTEREST_HOLDER"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
@@ -6202,83 +6683,87 @@ where [refTable].[DESCRIPTION] = ?</property>
                       cachedDataType="wstr"
                       cachedLength="40"
                       cachedName="STREET_ADDRESS_1"
+                      cachedSortKeyPosition="1"
                       externalMetadataColumnId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[STREET_ADDRESS_1]"
-                      lineageId="Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[STREET_ADDRESS_1]" />
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[STREET_ADDRESS_1]" />
                     <inputColumn
                       refId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].Columns[STREET_ADDRESS_2]"
                       cachedDataType="wstr"
                       cachedLength="40"
                       cachedName="STREET_ADDRESS_2"
+                      cachedSortKeyPosition="2"
                       externalMetadataColumnId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[STREET_ADDRESS_2]"
-                      lineageId="Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[STREET_ADDRESS_2]" />
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[STREET_ADDRESS_2]" />
                     <inputColumn
                       refId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].Columns[STREET_ADDRESS_3]"
                       cachedDataType="wstr"
                       cachedLength="40"
                       cachedName="STREET_ADDRESS_3"
+                      cachedSortKeyPosition="3"
                       externalMetadataColumnId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[STREET_ADDRESS_3]"
-                      lineageId="Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[STREET_ADDRESS_3]" />
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[STREET_ADDRESS_3]" />
                     <inputColumn
                       refId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].Columns[MUNICIPALITY_NAME]"
                       cachedDataType="wstr"
                       cachedLength="40"
                       cachedName="MUNICIPALITY_NAME"
+                      cachedSortKeyPosition="4"
                       externalMetadataColumnId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[MUNICIPALITY_NAME]"
-                      lineageId="Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[MUNICIPALITY_NAME]" />
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[MUNICIPALITY_NAME]" />
                     <inputColumn
                       refId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].Columns[POSTAL_CODE]"
                       cachedDataType="wstr"
                       cachedLength="6"
                       cachedName="POSTAL_CODE"
+                      cachedSortKeyPosition="13"
                       externalMetadataColumnId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[POSTAL_CODE]"
-                      lineageId="Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[POSTAL_CODE]" />
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[POSTAL_CODE]" />
                     <inputColumn
                       refId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].Columns[COUNTRY_ID]"
                       cachedDataType="i2"
                       cachedName="COUNTRY_ID"
+                      cachedSortKeyPosition="12"
                       externalMetadataColumnId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[COUNTRY_ID]"
-                      lineageId="Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[COUNTRY_ID]" />
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[COUNTRY_ID]" />
                     <inputColumn
                       refId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].Columns[PROVINCE_STATE_ID]"
                       cachedDataType="i2"
                       cachedName="PROVINCE_STATE_ID"
+                      cachedSortKeyPosition="11"
                       externalMetadataColumnId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[PROVINCE_STATE_ID]"
-                      lineageId="Package\Load Interest Holder Addresses\Union All 1.Outputs[Union All Output 1].Columns[PROVINCE_STATE_ID]" />
-                    <inputColumn
-                      refId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].Columns[ADDRESS_USAGE_TYPE_CODE]"
-                      cachedDataType="wstr"
-                      cachedLength="8"
-                      cachedName="ADDRESS_USAGE_TYPE_CODE"
-                      externalMetadataColumnId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[ADDRESS_USAGE_TYPE_CODE]"
-                      lineageId="Package\Load Interest Holder Addresses\ADDRESS_USAGE_TYPE_CODE.Outputs[Derived Column Output].Columns[ADDRESS_USAGE_TYPE_CODE]" />
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[PROVINCE_STATE_ID]" />
                     <inputColumn
                       refId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].Columns[APP_CREATE_USERID]"
                       cachedDataType="wstr"
                       cachedLength="23"
                       cachedName="APP_CREATE_USERID"
+                      cachedSortKeyPosition="7"
                       externalMetadataColumnId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[APP_CREATE_USERID]"
-                      lineageId="Package\Load Interest Holder Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_CREATE_USERID]" />
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[APP_CREATE_USERID]" />
                     <inputColumn
                       refId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].Columns[APP_CREATE_USER_DIRECTORY]"
                       cachedDataType="wstr"
                       cachedLength="12"
                       cachedName="APP_CREATE_USER_DIRECTORY"
+                      cachedSortKeyPosition="8"
                       externalMetadataColumnId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[APP_CREATE_USER_DIRECTORY]"
-                      lineageId="Package\Load Interest Holder Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_CREATE_USER_DIRECTORY]" />
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[APP_CREATE_USER_DIRECTORY]" />
                     <inputColumn
                       refId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].Columns[APP_LAST_UPDATE_USERID]"
                       cachedDataType="wstr"
                       cachedLength="23"
                       cachedName="APP_LAST_UPDATE_USERID"
+                      cachedSortKeyPosition="9"
                       externalMetadataColumnId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[APP_LAST_UPDATE_USERID]"
-                      lineageId="Package\Load Interest Holder Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_LAST_UPDATE_USERID]" />
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[APP_LAST_UPDATE_USERID]" />
                     <inputColumn
                       refId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].Columns[APP_LAST_UPDATE_USER_DIRECTORY]"
                       cachedDataType="wstr"
                       cachedLength="12"
                       cachedName="APP_LAST_UPDATE_USER_DIRECTORY"
+                      cachedSortKeyPosition="10"
                       externalMetadataColumnId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[APP_LAST_UPDATE_USER_DIRECTORY]"
-                      lineageId="Package\Load Interest Holder Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_LAST_UPDATE_USER_DIRECTORY]" />
+                      lineageId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output].Columns[APP_LAST_UPDATE_USER_DIRECTORY]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -6286,11 +6771,6 @@ where [refTable].[DESCRIPTION] = ?</property>
                       refId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[ADDRESS_ID]"
                       dataType="i8"
                       name="ADDRESS_ID" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[ADDRESS_USAGE_TYPE_CODE]"
-                      dataType="wstr"
-                      length="20"
-                      name="ADDRESS_USAGE_TYPE_CODE" />
                     <externalMetadataColumn
                       refId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[REGION_CODE]"
                       dataType="i2"
@@ -6402,6 +6882,11 @@ where [refTable].[DESCRIPTION] = ?</property>
                       dataType="wstr"
                       length="30"
                       name="DB_LAST_UPDATE_USERID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[COMMENT]"
+                      dataType="wstr"
+                      length="2000"
+                      name="COMMENT" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -7253,14 +7738,14 @@ where [refTable].[PROVINCE_STATE_CODE] = ?</property>
               startId="Package\Load Interest Holder Addresses\ADDRESS_USAGE_TYPE_CODE.Outputs[Derived Column Output]" />
             <path
               refId="Package\Load Interest Holder Addresses.Paths[Derived Column Output2]"
-              endId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input]"
-              name="Derived Column Output"
-              startId="Package\Load Interest Holder Addresses\Audit Trail.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\Load Interest Holder Addresses.Paths[Derived Column Output3]"
               endId="Package\Load Interest Holder Addresses\Union All 1.Inputs[Union All Input 2]"
               name="Derived Column Output"
               startId="Package\Load Interest Holder Addresses\BC.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load Interest Holder Addresses.Paths[Derived Column Output3]"
+              endId="Package\Load Interest Holder Addresses\Deduplicarte.Inputs[Sort Input]"
+              name="Derived Column Output"
+              startId="Package\Load Interest Holder Addresses\Audit Trail.Outputs[Derived Column Output]" />
             <path
               refId="Package\Load Interest Holder Addresses.Paths[Lookup Match Output]"
               endId="Package\Load Interest Holder Addresses\Union All.Inputs[Union All Input 1]"
@@ -7286,6 +7771,11 @@ where [refTable].[PROVINCE_STATE_CODE] = ?</property>
               endId="Package\Load Interest Holder Addresses\COUNTRY_ID.Inputs[Lookup Input]"
               name="OLE DB Source Output"
               startId="Package\Load Interest Holder Addresses\PAM_INTEREST_HOLDER.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load Interest Holder Addresses.Paths[Sort Output]"
+              endId="Package\Load Interest Holder Addresses\PIMS_ADDRESS.Inputs[OLE DB Destination Input]"
+              name="Sort Output"
+              startId="Package\Load Interest Holder Addresses\Deduplicarte.Outputs[Sort Output]" />
             <path
               refId="Package\Load Interest Holder Addresses.Paths[Union All Output 1]"
               endId="Package\Load Interest Holder Addresses\PROVINCE_STATE_ID.Inputs[Lookup Input]"
@@ -7350,7 +7840,7 @@ where [refTable].[STREET_ADDRESS_1] = ? and [refTable].[STREET_ADDRESS_2] = ? an
                   dataType="System.Int32"
                   description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
                   name="NoMatchBehavior"
-                  typeConverter="LookupNoMatchBehavior">1</property>
+                  typeConverter="LookupNoMatchBehavior">0</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
@@ -7502,6 +7992,7 @@ where [refTable].[STREET_ADDRESS_1] = ? and [refTable].[STREET_ADDRESS_2] = ? an
                 <output
                   refId="Package\Load Interest Holder Persons and Organizations\ADDRESS_ID.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Lookup Match Output"
                   synchronousInputId="Package\Load Interest Holder Persons and Organizations\ADDRESS_ID.Inputs[Lookup Input]">
@@ -8023,291 +8514,6 @@ where [refTable].[DESCRIPTION] = ?</property>
                       refId="Package\Load Interest Holder Persons and Organizations\COUNTRY_ID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Load Interest Holder Persons and Organizations\COUNTRY_ID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[etl].[ETL_INTEREST_HOLDER_PERSON_ORG_LOG]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Connections[OleDbConnection]"
-                  connectionManagerID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[sqldevtst.th.gov.bc.ca.PIMS_DEV]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].Columns[SURNAME]"
-                      cachedDataType="wstr"
-                      cachedLength="20"
-                      cachedName="SURNAME"
-                      externalMetadataColumnId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[SURNAME]"
-                      lineageId="Package\Load Interest Holder Persons and Organizations\Union All 1.Outputs[Union All Output 1].Columns[SURNAME]" />
-                    <inputColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].Columns[FIRST_NAME]"
-                      cachedDataType="wstr"
-                      cachedLength="15"
-                      cachedName="FIRST_NAME"
-                      externalMetadataColumnId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[FIRST_NAME]"
-                      lineageId="Package\Load Interest Holder Persons and Organizations\Union All 1.Outputs[Union All Output 1].Columns[FIRST_NAME]" />
-                    <inputColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].Columns[MIDDLE_NAME]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="MIDDLE_NAME"
-                      externalMetadataColumnId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[MIDDLE_NAME]"
-                      lineageId="Package\Load Interest Holder Persons and Organizations\Union All 1.Outputs[Union All Output 1].Columns[MIDDLE_NAME]" />
-                    <inputColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].Columns[STREET_ADDRESS_1]"
-                      cachedDataType="wstr"
-                      cachedLength="40"
-                      cachedName="STREET_ADDRESS_1"
-                      externalMetadataColumnId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[STREET_ADDRESS_1]"
-                      lineageId="Package\Load Interest Holder Persons and Organizations\Union All 1.Outputs[Union All Output 1].Columns[STREET_ADDRESS_1]" />
-                    <inputColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].Columns[STREET_ADDRESS_2]"
-                      cachedDataType="wstr"
-                      cachedLength="40"
-                      cachedName="STREET_ADDRESS_2"
-                      externalMetadataColumnId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[STREET_ADDRESS_2]"
-                      lineageId="Package\Load Interest Holder Persons and Organizations\Union All 1.Outputs[Union All Output 1].Columns[STREET_ADDRESS_2]" />
-                    <inputColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].Columns[STREET_ADDRESS_3]"
-                      cachedDataType="wstr"
-                      cachedLength="40"
-                      cachedName="STREET_ADDRESS_3"
-                      externalMetadataColumnId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[STREET_ADDRESS_3]"
-                      lineageId="Package\Load Interest Holder Persons and Organizations\Union All 1.Outputs[Union All Output 1].Columns[STREET_ADDRESS_3]" />
-                    <inputColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].Columns[MUNICIPALITY_NAME]"
-                      cachedDataType="wstr"
-                      cachedLength="40"
-                      cachedName="MUNICIPALITY_NAME"
-                      externalMetadataColumnId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[MUNICIPALITY_NAME]"
-                      lineageId="Package\Load Interest Holder Persons and Organizations\Union All 1.Outputs[Union All Output 1].Columns[MUNICIPALITY_NAME]" />
-                    <inputColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].Columns[PROVINCE]"
-                      cachedDataType="wstr"
-                      cachedLength="2"
-                      cachedName="PROVINCE"
-                      externalMetadataColumnId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[PROVINCE]"
-                      lineageId="Package\Load Interest Holder Persons and Organizations\Union All 1.Outputs[Union All Output 1].Columns[PROVINCE]" />
-                    <inputColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].Columns[COUNTRY]"
-                      cachedDataType="wstr"
-                      cachedLength="20"
-                      cachedName="COUNTRY"
-                      externalMetadataColumnId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[COUNTRY]"
-                      lineageId="Package\Load Interest Holder Persons and Organizations\Union All 1.Outputs[Union All Output 1].Columns[COUNTRY]" />
-                    <inputColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].Columns[ORGANIZATION_NAME]"
-                      cachedDataType="wstr"
-                      cachedLength="200"
-                      cachedName="ORGANIZATION_NAME"
-                      externalMetadataColumnId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[ORGANIZATION_NAME]"
-                      lineageId="Package\Load Interest Holder Persons and Organizations\Union All 1.Outputs[Union All Output 1].Columns[ORGANIZATION_NAME]" />
-                    <inputColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].Columns[COUNTRY_ID]"
-                      cachedDataType="i2"
-                      cachedName="COUNTRY_ID"
-                      externalMetadataColumnId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[COUNTRY_ID]"
-                      lineageId="Package\Load Interest Holder Persons and Organizations\Union All 1.Outputs[Union All Output 1].Columns[COUNTRY_ID]" />
-                    <inputColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].Columns[PROVINCE_STATE_ID]"
-                      cachedDataType="i2"
-                      cachedName="PROVINCE_STATE_ID"
-                      externalMetadataColumnId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[PROVINCE_STATE_ID]"
-                      lineageId="Package\Load Interest Holder Persons and Organizations\Union All 1.Outputs[Union All Output 1].Columns[PROVINCE_STATE_ID]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[SURNAME]"
-                      dataType="wstr"
-                      length="50"
-                      name="SURNAME" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[FIRST_NAME]"
-                      dataType="wstr"
-                      length="50"
-                      name="FIRST_NAME" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[MIDDLE_NAME]"
-                      dataType="wstr"
-                      length="200"
-                      name="MIDDLE_NAME" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[STREET_ADDRESS_1]"
-                      dataType="wstr"
-                      length="200"
-                      name="STREET_ADDRESS_1" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[STREET_ADDRESS_2]"
-                      dataType="wstr"
-                      length="200"
-                      name="STREET_ADDRESS_2" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[STREET_ADDRESS_3]"
-                      dataType="wstr"
-                      length="200"
-                      name="STREET_ADDRESS_3" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[MUNICIPALITY_NAME]"
-                      dataType="wstr"
-                      length="200"
-                      name="MUNICIPALITY_NAME" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[PROVINCE]"
-                      dataType="wstr"
-                      length="2"
-                      name="PROVINCE" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[COUNTRY]"
-                      dataType="wstr"
-                      length="20"
-                      name="COUNTRY" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[ADDRESS_ID]"
-                      dataType="i8"
-                      name="ADDRESS_ID" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[PROVINCE_STATE_ID]"
-                      dataType="i2"
-                      name="PROVINCE_STATE_ID" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[COUNTRY_ID]"
-                      dataType="i2"
-                      name="COUNTRY_ID" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[REGION_CODE]"
-                      dataType="i2"
-                      name="REGION_CODE" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[DISTRICT_CODE]"
-                      dataType="i2"
-                      name="DISTRICT_CODE" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[ORGANIZATION_NAME]"
-                      dataType="wstr"
-                      length="200"
-                      name="ORGANIZATION_NAME" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[ORGANIZATION_TYPE_CODE]"
-                      dataType="wstr"
-                      length="20"
-                      name="ORGANIZATION_TYPE_CODE" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[ORGANIZATION_IDENTIFIER_TYPE_CODE]"
-                      dataType="wstr"
-                      length="20"
-                      name="ORGANIZATION_IDENTIFIER_TYPE_CODE" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[APP_CREATE_USER_DIRECTORY]"
-                      dataType="wstr"
-                      length="30"
-                      name="APP_CREATE_USER_DIRECTORY" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[APP_CREATE_USERID]"
-                      dataType="wstr"
-                      length="30"
-                      name="APP_CREATE_USERID" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[APP_LAST_UPDATE_USER_DIRECTORY]"
-                      dataType="wstr"
-                      length="30"
-                      name="APP_LAST_UPDATE_USER_DIRECTORY" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input].ExternalColumns[APP_LAST_UPDATE_USERID]"
-                      dataType="wstr"
-                      length="30"
-                      name="APP_LAST_UPDATE_USERID" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -9620,12 +9826,6 @@ where [refTable].[DESCRIPTION] = ?</property>
                       externalMetadataColumnId="Package\Load Interest Holder Persons and Organizations\PIMS_ORGANIZATIION.Inputs[OLE DB Destination Input].ExternalColumns[ORGANIZATION_NAME]"
                       lineageId="Package\Load Interest Holder Persons and Organizations\Union All 1.Outputs[Union All Output 1].Columns[ORGANIZATION_NAME]" />
                     <inputColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\PIMS_ORGANIZATIION.Inputs[OLE DB Destination Input].Columns[ADDRESS_ID]"
-                      cachedDataType="i8"
-                      cachedName="ADDRESS_ID"
-                      externalMetadataColumnId="Package\Load Interest Holder Persons and Organizations\PIMS_ORGANIZATIION.Inputs[OLE DB Destination Input].ExternalColumns[ADDRESS_ID]"
-                      lineageId="Package\Load Interest Holder Persons and Organizations\ADDRESS_ID.Outputs[Lookup Match Output].Columns[ADDRESS_ID]" />
-                    <inputColumn
                       refId="Package\Load Interest Holder Persons and Organizations\PIMS_ORGANIZATIION.Inputs[OLE DB Destination Input].Columns[REGION_CODE]"
                       cachedDataType="i2"
                       cachedName="REGION_CODE"
@@ -9690,10 +9890,6 @@ where [refTable].[DESCRIPTION] = ?</property>
                       refId="Package\Load Interest Holder Persons and Organizations\PIMS_ORGANIZATIION.Inputs[OLE DB Destination Input].ExternalColumns[PRNT_ORGANIZATION_ID]"
                       dataType="i8"
                       name="PRNT_ORGANIZATION_ID" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\PIMS_ORGANIZATIION.Inputs[OLE DB Destination Input].ExternalColumns[ADDRESS_ID]"
-                      dataType="i8"
-                      name="ADDRESS_ID" />
                     <externalMetadataColumn
                       refId="Package\Load Interest Holder Persons and Organizations\PIMS_ORGANIZATIION.Inputs[OLE DB Destination Input].ExternalColumns[REGION_CODE]"
                       dataType="i2"
@@ -9789,6 +9985,16 @@ where [refTable].[DESCRIPTION] = ?</property>
                       dataType="wstr"
                       length="30"
                       name="DB_LAST_UPDATE_USERID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Interest Holder Persons and Organizations\PIMS_ORGANIZATIION.Inputs[OLE DB Destination Input].ExternalColumns[ORGANIZATION_ALIAS]"
+                      dataType="wstr"
+                      length="200"
+                      name="ORGANIZATION_ALIAS" />
+                    <externalMetadataColumn
+                      refId="Package\Load Interest Holder Persons and Organizations\PIMS_ORGANIZATIION.Inputs[OLE DB Destination Input].ExternalColumns[COMMENT]"
+                      dataType="wstr"
+                      length="2000"
+                      name="COMMENT" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -9904,12 +10110,6 @@ where [refTable].[DESCRIPTION] = ?</property>
                       externalMetadataColumnId="Package\Load Interest Holder Persons and Organizations\PIMS_PERSON.Inputs[OLE DB Destination Input].ExternalColumns[FIRST_NAME]"
                       lineageId="Package\Load Interest Holder Persons and Organizations\Union All 1.Outputs[Union All Output 1].Columns[FIRST_NAME]" />
                     <inputColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\PIMS_PERSON.Inputs[OLE DB Destination Input].Columns[ADDRESS_ID]"
-                      cachedDataType="i8"
-                      cachedName="ADDRESS_ID"
-                      externalMetadataColumnId="Package\Load Interest Holder Persons and Organizations\PIMS_PERSON.Inputs[OLE DB Destination Input].ExternalColumns[ADDRESS_ID]"
-                      lineageId="Package\Load Interest Holder Persons and Organizations\ADDRESS_ID.Outputs[Lookup Match Output].Columns[ADDRESS_ID]" />
-                    <inputColumn
                       refId="Package\Load Interest Holder Persons and Organizations\PIMS_PERSON.Inputs[OLE DB Destination Input].Columns[APP_CREATE_USERID]"
                       cachedDataType="wstr"
                       cachedLength="23"
@@ -9951,10 +10151,6 @@ where [refTable].[DESCRIPTION] = ?</property>
                       refId="Package\Load Interest Holder Persons and Organizations\PIMS_PERSON.Inputs[OLE DB Destination Input].ExternalColumns[PERSON_ID]"
                       dataType="i8"
                       name="PERSON_ID" />
-                    <externalMetadataColumn
-                      refId="Package\Load Interest Holder Persons and Organizations\PIMS_PERSON.Inputs[OLE DB Destination Input].ExternalColumns[ADDRESS_ID]"
-                      dataType="i8"
-                      name="ADDRESS_ID" />
                     <externalMetadataColumn
                       refId="Package\Load Interest Holder Persons and Organizations\PIMS_PERSON.Inputs[OLE DB Destination Input].ExternalColumns[SURNAME]"
                       dataType="wstr"
@@ -10041,6 +10237,16 @@ where [refTable].[DESCRIPTION] = ?</property>
                       dataType="wstr"
                       length="30"
                       name="DB_LAST_UPDATE_USERID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Interest Holder Persons and Organizations\PIMS_PERSON.Inputs[OLE DB Destination Input].ExternalColumns[PREFERRED_NAME]"
+                      dataType="wstr"
+                      length="200"
+                      name="PREFERRED_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\Load Interest Holder Persons and Organizations\PIMS_PERSON.Inputs[OLE DB Destination Input].ExternalColumns[COMMENT]"
+                      dataType="wstr"
+                      length="2000"
+                      name="COMMENT" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -11125,20 +11331,15 @@ where [refTable].[PROVINCE_STATE_CODE] = ?</property>
               name="Lookup Match Output"
               startId="Package\Load Interest Holder Persons and Organizations\ADDRESS_ID.Outputs[Lookup Match Output]" />
             <path
-              refId="Package\Load Interest Holder Persons and Organizations.Paths[Lookup No Match Output2]"
-              endId="Package\Load Interest Holder Persons and Organizations\Canada.Inputs[Derived Column Input]"
-              name="Lookup No Match Output"
-              startId="Package\Load Interest Holder Persons and Organizations\COUNTRY_ID.Outputs[Lookup No Match Output]" />
-            <path
-              refId="Package\Load Interest Holder Persons and Organizations.Paths[Lookup No Match Output]"
-              endId="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1.Inputs[OLE DB Destination Input]"
-              name="Lookup No Match Output"
-              startId="Package\Load Interest Holder Persons and Organizations\ADDRESS_ID.Outputs[Lookup No Match Output]" />
-            <path
               refId="Package\Load Interest Holder Persons and Organizations.Paths[Lookup No Match Output1]"
               endId="Package\Load Interest Holder Persons and Organizations\BC.Inputs[Derived Column Input]"
               name="Lookup No Match Output"
               startId="Package\Load Interest Holder Persons and Organizations\PROVINCE_STATE_ID.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Load Interest Holder Persons and Organizations.Paths[Lookup No Match Output]"
+              endId="Package\Load Interest Holder Persons and Organizations\Canada.Inputs[Derived Column Input]"
+              name="Lookup No Match Output"
+              startId="Package\Load Interest Holder Persons and Organizations\COUNTRY_ID.Outputs[Lookup No Match Output]" />
             <path
               refId="Package\Load Interest Holder Persons and Organizations.Paths[Multicast Output 1]"
               endId="Package\Load Interest Holder Persons and Organizations\PIMS_PERSON.Inputs[OLE DB Destination Input]"
@@ -14552,6 +14753,744 @@ WHERE PID_NO IS NOT NULL</property>
               </outputs>
             </component>
             <component
+              refId="Package\Load Property Addresses\Deduplicate"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Deduplicate"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[PROPERTY_ID]"
+                      cachedDataType="numeric"
+                      cachedName="PROPERTY_ID"
+                      cachedPrecision="10"
+                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[PROPERTY_ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[REGION_NO]"
+                      cachedDataType="numeric"
+                      cachedName="REGION_NO"
+                      cachedPrecision="2"
+                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[REGION_NO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[DISTRICT_NO]"
+                      cachedDataType="numeric"
+                      cachedName="DISTRICT_NO"
+                      cachedPrecision="2"
+                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[DISTRICT_NO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[DESCRIPTION]"
+                      cachedDataType="wstr"
+                      cachedLength="2000"
+                      cachedName="DESCRIPTION"
+                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[DESCRIPTION]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[FULL_LEGAL_DESCRIPTION]"
+                      cachedDataType="wstr"
+                      cachedLength="2000"
+                      cachedName="FULL_LEGAL_DESCRIPTION"
+                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[FULL_LEGAL_DESCRIPTION]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">5</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[FILE_NUMBER]"
+                      cachedDataType="numeric"
+                      cachedName="FILE_NUMBER"
+                      cachedPrecision="6"
+                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[FILE_NUMBER]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">6</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[FILE_NUMBER_SUFFIX]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FILE_NUMBER_SUFFIX"
+                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[FILE_NUMBER_SUFFIX]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">7</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[PID_NO]"
+                      cachedDataType="numeric"
+                      cachedName="PID_NO"
+                      cachedPrecision="9"
+                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[PID_NO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">8</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[PIN]"
+                      cachedDataType="numeric"
+                      cachedName="PIN"
+                      cachedPrecision="9"
+                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[PIN]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">9</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[CIVIC_ADDRESS]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="CIVIC_ADDRESS"
+                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[CIVIC_ADDRESS]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">10</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[CITY]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="CITY"
+                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[CITY]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">11</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[PROPERTY_TENURE_TYPE_CODE]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="PROPERTY_TENURE_TYPE_CODE"
+                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[PROPERTY_TENURE_TYPE_CODE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">12</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[COMMENTS]"
+                      cachedDataType="wstr"
+                      cachedLength="2000"
+                      cachedName="COMMENTS"
+                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[COMMENTS]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">13</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[LAND_USE_DESCRIPTION]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="LAND_USE_DESCRIPTION"
+                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[LAND_USE_DESCRIPTION]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">14</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[ACTUAL_LAND_USE_CODE]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="ACTUAL_LAND_USE_CODE"
+                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[ACTUAL_LAND_USE_CODE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">15</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[ADDRESS_USAGE_TYPE_CODE]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="ADDRESS_USAGE_TYPE_CODE"
+                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[ADDRESS_USAGE_TYPE_CODE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">16</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[COUNTRY_ID]"
+                      cachedDataType="ui2"
+                      cachedName="COUNTRY_ID"
+                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[COUNTRY_ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">17</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[APP_CREATE_USERID]"
+                      cachedDataType="wstr"
+                      cachedLength="23"
+                      cachedName="APP_CREATE_USERID"
+                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_CREATE_USERID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">18</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[APP_CREATE_USER_DIRECTORY]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="APP_CREATE_USER_DIRECTORY"
+                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_CREATE_USER_DIRECTORY]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">19</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[APP_LAST_UPDATE_USERID]"
+                      cachedDataType="wstr"
+                      cachedLength="23"
+                      cachedName="APP_LAST_UPDATE_USERID"
+                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_LAST_UPDATE_USERID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">20</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[APP_LAST_UPDATE_USER_DIRECTORY]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="APP_LAST_UPDATE_USER_DIRECTORY"
+                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_LAST_UPDATE_USER_DIRECTORY]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">21</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input].Columns[PROVINCE_STATE_ID]"
+                      cachedDataType="ui2"
+                      cachedName="PROVINCE_STATE_ID"
+                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[PROVINCE_STATE_ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">22</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[PROPERTY_ID]"
+                      dataType="numeric"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[PROPERTY_ID]"
+                      name="PROPERTY_ID"
+                      precision="10"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[PROPERTY_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[REGION_NO]"
+                      dataType="numeric"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[REGION_NO]"
+                      name="REGION_NO"
+                      precision="2"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[REGION_NO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[DISTRICT_NO]"
+                      dataType="numeric"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[DISTRICT_NO]"
+                      name="DISTRICT_NO"
+                      precision="2"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[DISTRICT_NO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[DESCRIPTION]"
+                      dataType="wstr"
+                      length="2000"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[DESCRIPTION]"
+                      name="DESCRIPTION"
+                      sortKeyPosition="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[DESCRIPTION]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[FULL_LEGAL_DESCRIPTION]"
+                      dataType="wstr"
+                      length="2000"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[FULL_LEGAL_DESCRIPTION]"
+                      name="FULL_LEGAL_DESCRIPTION"
+                      sortKeyPosition="5">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[FULL_LEGAL_DESCRIPTION]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[FILE_NUMBER]"
+                      dataType="numeric"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[FILE_NUMBER]"
+                      name="FILE_NUMBER"
+                      precision="6"
+                      sortKeyPosition="6">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[FILE_NUMBER]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[FILE_NUMBER_SUFFIX]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[FILE_NUMBER_SUFFIX]"
+                      name="FILE_NUMBER_SUFFIX"
+                      sortKeyPosition="7">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[FILE_NUMBER_SUFFIX]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[PID_NO]"
+                      dataType="numeric"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[PID_NO]"
+                      name="PID_NO"
+                      precision="9"
+                      sortKeyPosition="8">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[PID_NO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[PIN]"
+                      dataType="numeric"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[PIN]"
+                      name="PIN"
+                      precision="9"
+                      sortKeyPosition="9">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[PIN]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[CIVIC_ADDRESS]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[CIVIC_ADDRESS]"
+                      name="CIVIC_ADDRESS"
+                      sortKeyPosition="10">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[CIVIC_ADDRESS]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[CITY]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[CITY]"
+                      name="CITY"
+                      sortKeyPosition="11">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[CITY]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[PROPERTY_TENURE_TYPE_CODE]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[PROPERTY_TENURE_TYPE_CODE]"
+                      name="PROPERTY_TENURE_TYPE_CODE"
+                      sortKeyPosition="12">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[PROPERTY_TENURE_TYPE_CODE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[COMMENTS]"
+                      dataType="wstr"
+                      length="2000"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[COMMENTS]"
+                      name="COMMENTS"
+                      sortKeyPosition="13">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[COMMENTS]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[LAND_USE_DESCRIPTION]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[LAND_USE_DESCRIPTION]"
+                      name="LAND_USE_DESCRIPTION"
+                      sortKeyPosition="14">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[LAND_USE_DESCRIPTION]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[ACTUAL_LAND_USE_CODE]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[ACTUAL_LAND_USE_CODE]"
+                      name="ACTUAL_LAND_USE_CODE"
+                      sortKeyPosition="15">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[ACTUAL_LAND_USE_CODE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[ADDRESS_USAGE_TYPE_CODE]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[ADDRESS_USAGE_TYPE_CODE]"
+                      name="ADDRESS_USAGE_TYPE_CODE"
+                      sortKeyPosition="16">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[ADDRESS_USAGE_TYPE_CODE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[COUNTRY_ID]"
+                      dataType="ui2"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[COUNTRY_ID]"
+                      name="COUNTRY_ID"
+                      sortKeyPosition="17">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[COUNTRY_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[APP_CREATE_USERID]"
+                      dataType="wstr"
+                      length="23"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[APP_CREATE_USERID]"
+                      name="APP_CREATE_USERID"
+                      sortKeyPosition="18">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_CREATE_USERID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[APP_CREATE_USER_DIRECTORY]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[APP_CREATE_USER_DIRECTORY]"
+                      name="APP_CREATE_USER_DIRECTORY"
+                      sortKeyPosition="19">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_CREATE_USER_DIRECTORY]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[APP_LAST_UPDATE_USERID]"
+                      dataType="wstr"
+                      length="23"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[APP_LAST_UPDATE_USERID]"
+                      name="APP_LAST_UPDATE_USERID"
+                      sortKeyPosition="20">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_LAST_UPDATE_USERID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[APP_LAST_UPDATE_USER_DIRECTORY]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[APP_LAST_UPDATE_USER_DIRECTORY]"
+                      name="APP_LAST_UPDATE_USER_DIRECTORY"
+                      sortKeyPosition="21">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_LAST_UPDATE_USER_DIRECTORY]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[PROVINCE_STATE_ID]"
+                      dataType="ui2"
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[PROVINCE_STATE_ID]"
+                      name="PROVINCE_STATE_ID"
+                      sortKeyPosition="22">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[PROVINCE_STATE_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Load Property Addresses\PAM_PROPERTY"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
@@ -15210,76 +16149,79 @@ WHERE PID_NO IS NOT NULL</property>
                       cachedDataType="wstr"
                       cachedLength="23"
                       cachedName="APP_CREATE_USERID"
+                      cachedSortKeyPosition="18"
                       externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[APP_CREATE_USERID]"
-                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_CREATE_USERID]" />
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[APP_CREATE_USERID]" />
                     <inputColumn
                       refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[APP_CREATE_USER_DIRECTORY]"
                       cachedDataType="wstr"
                       cachedLength="12"
                       cachedName="APP_CREATE_USER_DIRECTORY"
+                      cachedSortKeyPosition="19"
                       externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[APP_CREATE_USER_DIRECTORY]"
-                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_CREATE_USER_DIRECTORY]" />
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[APP_CREATE_USER_DIRECTORY]" />
                     <inputColumn
                       refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[APP_LAST_UPDATE_USERID]"
                       cachedDataType="wstr"
                       cachedLength="23"
                       cachedName="APP_LAST_UPDATE_USERID"
+                      cachedSortKeyPosition="20"
                       externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[APP_LAST_UPDATE_USERID]"
-                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_LAST_UPDATE_USERID]" />
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[APP_LAST_UPDATE_USERID]" />
                     <inputColumn
                       refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[APP_LAST_UPDATE_USER_DIRECTORY]"
                       cachedDataType="wstr"
                       cachedLength="12"
                       cachedName="APP_LAST_UPDATE_USER_DIRECTORY"
+                      cachedSortKeyPosition="21"
                       externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[APP_LAST_UPDATE_USER_DIRECTORY]"
-                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[APP_LAST_UPDATE_USER_DIRECTORY]" />
-                    <inputColumn
-                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[ADDRESS_USAGE_TYPE_CODE]"
-                      cachedDataType="wstr"
-                      cachedLength="8"
-                      cachedName="ADDRESS_USAGE_TYPE_CODE"
-                      externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[ADDRESS_USAGE_TYPE_CODE]"
-                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[ADDRESS_USAGE_TYPE_CODE]" />
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[APP_LAST_UPDATE_USER_DIRECTORY]" />
                     <inputColumn
                       refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[COUNTRY_ID]"
                       cachedDataType="ui2"
                       cachedName="COUNTRY_ID"
+                      cachedSortKeyPosition="17"
                       externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[COUNTRY_ID]"
-                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[COUNTRY_ID]" />
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[COUNTRY_ID]" />
                     <inputColumn
                       refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[PROVINCE_STATE_ID]"
                       cachedDataType="ui2"
                       cachedName="PROVINCE_STATE_ID"
+                      cachedSortKeyPosition="22"
                       externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[PROVINCE_STATE_ID]"
-                      lineageId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output].Columns[PROVINCE_STATE_ID]" />
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[PROVINCE_STATE_ID]" />
                     <inputColumn
                       refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[CIVIC_ADDRESS]"
                       cachedDataType="wstr"
                       cachedLength="100"
                       cachedName="CIVIC_ADDRESS"
+                      cachedSortKeyPosition="10"
                       externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[STREET_ADDRESS_1]"
-                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[CIVIC_ADDRESS]" />
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[CIVIC_ADDRESS]" />
                     <inputColumn
                       refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[REGION_NO]"
                       cachedDataType="numeric"
                       cachedName="REGION_NO"
                       cachedPrecision="2"
+                      cachedSortKeyPosition="2"
                       externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[REGION_CODE]"
-                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[REGION_NO]" />
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[REGION_NO]" />
                     <inputColumn
                       refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[DISTRICT_NO]"
                       cachedDataType="numeric"
                       cachedName="DISTRICT_NO"
                       cachedPrecision="2"
+                      cachedSortKeyPosition="3"
                       externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[DISTRICT_CODE]"
-                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[DISTRICT_NO]" />
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[DISTRICT_NO]" />
                     <inputColumn
                       refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].Columns[CITY]"
                       cachedDataType="wstr"
                       cachedLength="40"
                       cachedName="CITY"
+                      cachedSortKeyPosition="11"
                       externalMetadataColumnId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[MUNICIPALITY_NAME]"
-                      lineageId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output].Columns[CITY]" />
+                      lineageId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output].Columns[CITY]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -15354,11 +16296,6 @@ WHERE PID_NO IS NOT NULL</property>
                       length="30"
                       name="DB_LAST_UPDATE_USERID" />
                     <externalMetadataColumn
-                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[ADDRESS_USAGE_TYPE_CODE]"
-                      dataType="wstr"
-                      length="20"
-                      name="ADDRESS_USAGE_TYPE_CODE" />
-                    <externalMetadataColumn
                       refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[PROVINCE_STATE_ID]"
                       dataType="i2"
                       name="PROVINCE_STATE_ID" />
@@ -15403,6 +16340,11 @@ WHERE PID_NO IS NOT NULL</property>
                       name="LONGITUDE"
                       precision="9"
                       scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input].ExternalColumns[COMMENT]"
+                      dataType="wstr"
+                      length="2000"
+                      name="COMMENT" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -15435,7 +16377,7 @@ WHERE PID_NO IS NOT NULL</property>
           <paths>
             <path
               refId="Package\Load Property Addresses.Paths[Derived Column Output]"
-              endId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input]"
+              endId="Package\Load Property Addresses\Deduplicate.Inputs[Sort Input]"
               name="Derived Column Output"
               startId="Package\Load Property Addresses\Audit Trail.Outputs[Derived Column Output]" />
             <path
@@ -15443,6 +16385,11 @@ WHERE PID_NO IS NOT NULL</property>
               endId="Package\Load Property Addresses\Audit Trail.Inputs[Derived Column Input]"
               name="OLE DB Source Output"
               startId="Package\Load Property Addresses\PAM_PROPERTY.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load Property Addresses.Paths[Sort Output]"
+              endId="Package\Load Property Addresses\PIMS ADDRESS.Inputs[OLE DB Destination Input]"
+              name="Sort Output"
+              startId="Package\Load Property Addresses\Deduplicate.Outputs[Sort Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -15735,9 +16682,9 @@ WHERE PID_NO IS NOT NULL</property>
           Id="Package\Load Contact Method\ORGANIZATION ID"
           TopLeft="1057.57141327291,823.907943308344" />
         <NodeLayout
-          Size="161,42"
+          Size="174,42"
           Id="Package\Load Contact Method\Data Conversion 3"
-          TopLeft="1616.95239658204,232" />
+          TopLeft="1603.95239658204,232" />
         <NodeLayout
           Size="299,42"
           Id="Package\Load Contact Method\CONTACT_METHOD_TYPE_CODE - FAX"
@@ -15797,86 +16744,12 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Contact Method.Paths[OLE DB Source Output4]"
-          TopLeft="2093.7166253739,204.485715773446">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,96.91428356534"
-              Start="0,0"
-              End="0,89.41428356534">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,89.41428356534" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Contact Method.Paths[OLE DB Source Output3]"
-          TopLeft="881.619055433878,209.190476307566">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,22.809523692434"
-              Start="0,0"
-              End="0,15.309523692434">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,15.309523692434" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Contact Method.Paths[OLE DB Source Output2]"
-          TopLeft="464.726198291021,204.733333450423">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,26.266666549577"
-              Start="0,0"
-              End="0,18.766666549577">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,18.766666549577" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Contact Method.Paths[OLE DB Source Output1]"
-          TopLeft="1696.47619829102,205">
+          TopLeft="1693.22619829102,205">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -15893,13 +16766,11 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Contact Method.Paths[OLE DB Source Output]"
+          Id="Package\Load Contact Method.Paths[OLE DB Source Output3]"
           TopLeft="1280.48811086776,207.304762021852">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -15917,9 +16788,73 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Contact Method.Paths[OLE DB Source Output2]"
+          TopLeft="2093.7166253739,204.485715773446">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,96.91428356534"
+              Start="0,0"
+              End="0,89.41428356534">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,89.41428356534" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Contact Method.Paths[OLE DB Source Output1]"
+          TopLeft="881.619055433878,209.190476307566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,22.809523692434"
+              Start="0,0"
+              End="0,15.309523692434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.309523692434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Contact Method.Paths[OLE DB Source Output]"
+          TopLeft="464.726198291021,204.733333450423">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26.266666549577"
+              Start="0,0"
+              End="0,18.766666549577">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.766666549577" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16085,9 +17020,7 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16109,9 +17042,7 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16145,9 +17076,7 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16181,9 +17110,7 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16217,9 +17144,7 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16253,9 +17178,7 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16277,9 +17200,7 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16301,14 +17222,12 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Contact Method.Paths[Data Conversion Output1]"
-          TopLeft="1697.64287353413,274">
+          TopLeft="1694.39287353413,274">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -16325,9 +17244,7 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16349,9 +17266,7 @@ WHERE PID_NO IS NOT NULL</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -16526,6 +17441,10 @@ WHERE PID_NO IS NOT NULL</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="209,42"
+          Id="Package\Load Interest Holder Addresses\PIMS_ADDRESS"
+          TopLeft="419,823" />
+        <NodeLayout
           Size="156,42"
           Id="Package\Load Interest Holder Addresses\COUNTRY_ID"
           TopLeft="448,120" />
@@ -16538,17 +17457,21 @@ WHERE PID_NO IS NOT NULL</property>
           Id="Package\Load Interest Holder Addresses\Audit Trail"
           TopLeft="465.99999741713,661.766666859521" />
         <NodeLayout
+          Size="223,42"
+          Id="Package\Load Interest Holder Addresses\PAM_INTEREST_HOLDER"
+          TopLeft="419.5,34.5" />
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Load Interest Holder Addresses\Union All"
+          TopLeft="457.25,288.5" />
+        <NodeLayout
           Size="202,43"
           Id="Package\Load Interest Holder Addresses\PROVINCE_STATE_ID"
           TopLeft="420.25,362.75" />
         <NodeLayout
-          Size="138,42"
-          Id="Package\Load Interest Holder Addresses\Union All 1"
-          TopLeft="437.25,508.75" />
-        <NodeLayout
-          Size="223,42"
-          Id="Package\Load Interest Holder Addresses\PAM_INTEREST_HOLDER"
-          TopLeft="419.5,34.5" />
+          Size="141,42"
+          Id="Package\Load Interest Holder Addresses\Deduplicarte"
+          TopLeft="453,737" />
         <NodeLayout
           Size="125,44"
           Id="Package\Load Interest Holder Addresses\Canada"
@@ -16558,13 +17481,141 @@ WHERE PID_NO IS NOT NULL</property>
           Id="Package\Load Interest Holder Addresses\ADDRESS_USAGE_TYPE_CODE"
           TopLeft="380.749999900659,578.483333347109" />
         <NodeLayout
-          Size="209,42"
-          Id="Package\Load Interest Holder Addresses\PIMS_ADDRESS"
-          TopLeft="421,750" />
-        <NodeLayout
-          Size="120,42"
-          Id="Package\Load Interest Holder Addresses\Union All"
-          TopLeft="457.25,288.5" />
+          Size="138,42"
+          Id="Package\Load Interest Holder Addresses\Union All 1"
+          TopLeft="437.25,508.75" />
+        <EdgeLayout
+          Id="Package\Load Interest Holder Addresses.Paths[Union All Output 11]"
+          TopLeft="507.49999995033,550.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.733333347109"
+              Start="0,0"
+              End="0,20.233333347109">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.233333347109" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Interest Holder Addresses.Paths[Union All Output 1]"
+          TopLeft="519.25,330.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.25"
+              Start="0,0"
+              End="0,24.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Interest Holder Addresses.Paths[Sort Output]"
+          TopLeft="523.5,779">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Interest Holder Addresses.Paths[OLE DB Source Output]"
+          TopLeft="528.5,76.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.5"
+              Start="0,0"
+              End="0,36">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Interest Holder Addresses.Paths[Lookup No Match Output1]"
+          TopLeft="553.583333333333,405.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="188.666666666667,23"
+              Start="0,0"
+              End="188.666666666667,15.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,5.30844793713164" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,5.30844793713164"
+                    Point2="0,9.30844793713164"
+                    Point3="4,9.30844793713164" />
+                  <mssgle:LineSegment
+                    End="184.666666666667,9.30844793713164" />
+                  <mssgle:CubicBezierSegment
+                    Point1="184.666666666667,9.30844793713164"
+                    Point2="188.666666666667,9.30844793713164"
+                    Point3="188.666666666667,13.3084479371316" />
+                  <mssgle:LineSegment
+                    End="188.666666666667,15.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="38.5269466145835,14.3084479371316,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Interest Holder Addresses.Paths[Lookup No Match Output]"
           TopLeft="550.666666666667,162">
@@ -16651,6 +17702,30 @@ WHERE PID_NO IS NOT NULL</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Interest Holder Addresses.Paths[Derived Column Output3]"
+          TopLeft="526.249998708565,703.766666859521">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33.233333140479"
+              Start="0,0"
+              End="0,25.733333140479">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.733333140479" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Interest Holder Addresses.Paths[Derived Column Output2]"
           TopLeft="742.25,470.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -16675,30 +17750,6 @@ WHERE PID_NO IS NOT NULL</property>
                     Point3="-214.333333333333,26.5386819484241" />
                   <mssgle:LineSegment
                     End="-214.333333333333,30.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Interest Holder Addresses.Paths[Derived Column Output2]"
-          TopLeft="527.249998708565,703.766666859521">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,46.233333140479"
-              Start="0,0"
-              End="0,38.733333140479">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,38.733333140479" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -16769,117 +17820,22 @@ WHERE PID_NO IS NOT NULL</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Interest Holder Addresses.Paths[Union All Output 11]"
-          TopLeft="507.49999995033,550.75">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,27.733333347109"
-              Start="0,0"
-              End="0,20.233333347109">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.233333347109" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Interest Holder Addresses.Paths[Union All Output 1]"
-          TopLeft="519.25,330.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,32.25"
-              Start="0,0"
-              End="0,24.75">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,24.75" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Interest Holder Addresses.Paths[OLE DB Source Output]"
-          TopLeft="528.5,76.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43.5"
-              Start="0,0"
-              End="0,36">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,36" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Interest Holder Addresses.Paths[Lookup No Match Output1]"
-          TopLeft="553.583333333333,405.75">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="188.666666666667,23"
-              Start="0,0"
-              End="188.666666666667,15.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,5.30844793713164" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,5.30844793713164"
-                    Point2="0,9.30844793713164"
-                    Point3="4,9.30844793713164" />
-                  <mssgle:LineSegment
-                    End="184.666666666667,9.30844793713164" />
-                  <mssgle:CubicBezierSegment
-                    Point1="184.666666666667,9.30844793713164"
-                    Point2="188.666666666667,9.30844793713164"
-                    Point3="188.666666666667,13.3084479371316" />
-                  <mssgle:LineSegment
-                    End="188.666666666667,15.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="38.5269466145835,14.3084479371316,111.6127734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Interest Holder Addresses\PIMS_ADDRESS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load Interest Holder Addresses\COUNTRY_ID">
     <Properties>
@@ -16900,6 +17856,19 @@ WHERE PID_NO IS NOT NULL</property>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Interest Holder Addresses\PAM_INTEREST_HOLDER">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -16926,32 +17895,6 @@ WHERE PID_NO IS NOT NULL</property>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Interest Holder Addresses\PAM_INTEREST_HOLDER">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Interest Holder Addresses\PIMS_ADDRESS">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Load Interest Holder Persons and Organizations">
     <LayoutInfo>
@@ -16962,13 +17905,25 @@ WHERE PID_NO IS NOT NULL</property>
           Id="Package\Load Interest Holder Persons and Organizations\Canada"
           TopLeft="775,90" />
         <NodeLayout
+          Size="334,42"
+          Id="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 2"
+          TopLeft="1618.75,769.25" />
+        <NodeLayout
+          Size="201,42"
+          Id="Package\Load Interest Holder Persons and Organizations\PROVINCE_STATE_ID"
+          TopLeft="442,275" />
+        <NodeLayout
+          Size="114,42"
+          Id="Package\Load Interest Holder Persons and Organizations\BC"
+          TopLeft="787,355.6" />
+        <NodeLayout
+          Size="226,44"
+          Id="Package\Load Interest Holder Persons and Organizations\PAM_INTEREST_HOLDER"
+          TopLeft="420,7.99999999999986" />
+        <NodeLayout
           Size="174,42"
           Id="Package\Load Interest Holder Persons and Organizations\PIMS_PERSON"
           TopLeft="433.75,883.25" />
-        <NodeLayout
-          Size="334,42"
-          Id="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1"
-          TopLeft="763.75,512.5" />
         <NodeLayout
           Size="139,42"
           Id="Package\Load Interest Holder Persons and Organizations\Union All"
@@ -16982,13 +17937,13 @@ WHERE PID_NO IS NOT NULL</property>
           Id="Package\Load Interest Holder Persons and Organizations\ORGANIZATION_TYPE_CODE"
           TopLeft="623.25,770.5" />
         <NodeLayout
-          Size="114,42"
-          Id="Package\Load Interest Holder Persons and Organizations\BC"
-          TopLeft="787,355.6" />
+          Size="145,42"
+          Id="Package\Load Interest Holder Persons and Organizations\Audit Trail"
+          TopLeft="451.75,661.25" />
         <NodeLayout
-          Size="222,42"
-          Id="Package\Load Interest Holder Persons and Organizations\PIMS_ORGANIZATIION"
-          TopLeft="1232.24992559354,770.750005992254" />
+          Size="172,42"
+          Id="Package\Load Interest Holder Persons and Organizations\COUNTRY_ID"
+          TopLeft="444,93" />
         <NodeLayout
           Size="307,42"
           Id="Package\Load Interest Holder Persons and Organizations\ORGANIZATION_IDENTIFIER_TYPE_CODE"
@@ -16998,33 +17953,125 @@ WHERE PID_NO IS NOT NULL</property>
           Id="Package\Load Interest Holder Persons and Organizations\Union All 1"
           TopLeft="459,430" />
         <NodeLayout
-          Size="136,42"
-          Id="Package\Load Interest Holder Persons and Organizations\Multicast"
-          TopLeft="449.75,772.25" />
-        <NodeLayout
-          Size="145,42"
-          Id="Package\Load Interest Holder Persons and Organizations\Audit Trail"
-          TopLeft="451.75,661.25" />
-        <NodeLayout
-          Size="334,42"
-          Id="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 2"
-          TopLeft="1618.75,769.25" />
-        <NodeLayout
-          Size="172,42"
-          Id="Package\Load Interest Holder Persons and Organizations\COUNTRY_ID"
-          TopLeft="444,93" />
-        <NodeLayout
-          Size="201,42"
-          Id="Package\Load Interest Holder Persons and Organizations\PROVINCE_STATE_ID"
-          TopLeft="442,275" />
+          Size="222,42"
+          Id="Package\Load Interest Holder Persons and Organizations\PIMS_ORGANIZATIION"
+          TopLeft="1232.24992559354,770.750005992254" />
         <NodeLayout
           Size="159,42"
           Id="Package\Load Interest Holder Persons and Organizations\ADDRESS_ID"
           TopLeft="450,520" />
         <NodeLayout
-          Size="226,44"
-          Id="Package\Load Interest Holder Persons and Organizations\PAM_INTEREST_HOLDER"
-          TopLeft="420,7.99999999999986" />
+          Size="136,42"
+          Id="Package\Load Interest Holder Persons and Organizations\Multicast"
+          TopLeft="449.75,772.25" />
+        <EdgeLayout
+          Id="Package\Load Interest Holder Persons and Organizations.Paths[Derived Column Output3]"
+          TopLeft="844,397.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-298.333333333333,32.4"
+              Start="0,0"
+              End="-298.333333333333,24.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.2071856287425" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.2071856287425"
+                    Point2="0,19.2071856287425"
+                    Point3="-4,19.2071856287425" />
+                  <mssgle:LineSegment
+                    End="-294.333333333333,19.2071856287425" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-294.333333333333,19.2071856287425"
+                    Point2="-298.333333333333,19.2071856287425"
+                    Point3="-298.333333333333,23.2071856287425" />
+                  <mssgle:LineSegment
+                    End="-298.333333333333,24.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Interest Holder Persons and Organizations.Paths[Derived Column Output2]"
+          TopLeft="1208.41665805711,792.900001735688">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="23.83326753643,0"
+              Start="0,0"
+              End="16.33326753643,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="16.33326753643,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Interest Holder Persons and Organizations.Paths[Derived Column Output1]"
+          TopLeft="858.25,792.77499873956">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="43.16665805711,0"
+              Start="0,0"
+              End="35.66665805711,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="35.66665805711,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Interest Holder Persons and Organizations.Paths[Derived Column Output]"
+          TopLeft="521,703.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,69"
+              Start="0,0"
+              End="0,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Interest Holder Persons and Organizations.Paths[Union All Output 11]"
           TopLeft="527.25,472">
@@ -17194,30 +18241,6 @@ WHERE PID_NO IS NOT NULL</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Interest Holder Persons and Organizations.Paths[Lookup No Match Output2]"
-          TopLeft="616,112.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="159,0"
-              Start="0,0"
-              End="151.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="151.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="19.94361328125,5,111.6127734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Load Interest Holder Persons and Organizations.Paths[Lookup No Match Output1]"
           TopLeft="574.666666666667,317">
           <EdgeLayout.Curve>
@@ -17255,25 +18278,25 @@ WHERE PID_NO IS NOT NULL</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Interest Holder Persons and Organizations.Paths[Lookup No Match Output]"
-          TopLeft="609,537.25">
+          TopLeft="616,112.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="154.75,0"
+              EndConnector="159,0"
               Start="0,0"
-              End="147.25,0">
+              End="151.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="147.25,0" />
+                    End="151.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="17.81861328125,5,111.6127734375,11.609375"
+              BoundingBox="19.94361328125,5,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -17385,117 +18408,58 @@ WHERE PID_NO IS NOT NULL</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Interest Holder Persons and Organizations.Paths[Derived Column Output3]"
-          TopLeft="844,397.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-298.333333333333,32.4"
-              Start="0,0"
-              End="-298.333333333333,24.9">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,15.2071856287425" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,15.2071856287425"
-                    Point2="0,19.2071856287425"
-                    Point3="-4,19.2071856287425" />
-                  <mssgle:LineSegment
-                    End="-294.333333333333,19.2071856287425" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-294.333333333333,19.2071856287425"
-                    Point2="-298.333333333333,19.2071856287425"
-                    Point3="-298.333333333333,23.2071856287425" />
-                  <mssgle:LineSegment
-                    End="-298.333333333333,24.9" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Interest Holder Persons and Organizations.Paths[Derived Column Output2]"
-          TopLeft="1208.41665805711,792.900001735688">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="23.83326753643,0"
-              Start="0,0"
-              End="16.33326753643,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="16.33326753643,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Interest Holder Persons and Organizations.Paths[Derived Column Output1]"
-          TopLeft="858.25,792.77499873956">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="43.16665805711,0"
-              Start="0,0"
-              End="35.66665805711,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="35.66665805711,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Interest Holder Persons and Organizations.Paths[Derived Column Output]"
-          TopLeft="521,703.25">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,69"
-              Start="0,0"
-              End="0,61.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,61.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 2">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Interest Holder Persons and Organizations\PROVINCE_STATE_ID">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[PIMS_PROVINCE_STATE]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Interest Holder Persons and Organizations\PAM_INTEREST_HOLDER">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load Interest Holder Persons and Organizations\PIMS_PERSON">
     <Properties>
@@ -17510,46 +18474,7 @@ WHERE PID_NO IS NOT NULL</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 1">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 3">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Interest Holder Persons and Organizations\PIMS_ORGANIZATIION">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Interest Holder Persons and Organizations\ETL_INTEREST_HOLDER_PERSON_ORG_LOG 2">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -17585,25 +18510,15 @@ WHERE PID_NO IS NOT NULL</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Interest Holder Persons and Organizations\PROVINCE_STATE_ID">
+    design-time-name="Package\Load Interest Holder Persons and Organizations\PIMS_ORGANIZATIION">
     <Properties>
       <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[PIMS_PROVINCE_STATE]</Value>
+        <Name>DataSourceViewID</Name>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -17627,19 +18542,6 @@ WHERE PID_NO IS NOT NULL</property>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Interest Holder Persons and Organizations\PAM_INTEREST_HOLDER">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -18204,17 +19106,57 @@ WHERE PID_NO IS NOT NULL</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="169,42"
+          Id="Package\Load Property Addresses\PAM_PROPERTY"
+          TopLeft="449,72" />
+        <NodeLayout
           Size="162,42"
           Id="Package\Load Property Addresses\PIMS ADDRESS"
-          TopLeft="451.5,296.5" />
+          TopLeft="452.5,361.5" />
         <NodeLayout
           Size="129,42"
           Id="Package\Load Property Addresses\Audit Trail"
           TopLeft="474.833305882085,177.466668140623" />
         <NodeLayout
-          Size="169,42"
-          Id="Package\Load Property Addresses\PAM_PROPERTY"
-          TopLeft="449,72" />
+          Size="137,42"
+          Id="Package\Load Property Addresses\Deduplicate"
+          TopLeft="491,259" />
+        <EdgeLayout
+          Id="Package\Load Property Addresses.Paths[Sort Output]"
+          TopLeft="559.5,301">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-26,60.5"
+              Start="0,0"
+              End="-26,53">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.25"
+                    Point2="0,30.25"
+                    Point3="-4,30.25" />
+                  <mssgle:LineSegment
+                    End="-22,30.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22,30.25"
+                    Point2="-26,30.25"
+                    Point3="-26,34.25" />
+                  <mssgle:LineSegment
+                    End="-26,53" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Property Addresses.Paths[OLE DB Source Output]"
           TopLeft="536.416652941042,114">
@@ -18241,18 +19183,30 @@ WHERE PID_NO IS NOT NULL</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Property Addresses.Paths[Derived Column Output]"
-          TopLeft="535.916652941042,219.466668140623">
+          TopLeft="539.333305882085,219.466668140623">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,77.033331859377"
+              EndConnector="20.166694117915,39.533331859377"
               Start="0,0"
-              End="0,69.533331859377">
+              End="20.166694117915,32.033331859377">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,69.533331859377" />
+                    End="0,15.7666659296885" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.7666659296885"
+                    Point2="0,19.7666659296885"
+                    Point3="4,19.7666659296885" />
+                  <mssgle:LineSegment
+                    End="16.166694117915,19.7666659296885" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.166694117915,19.7666659296885"
+                    Point2="20.166694117915,19.7666659296885"
+                    Point3="20.166694117915,23.7666659296885" />
+                  <mssgle:LineSegment
+                    End="20.166694117915,32.033331859377" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -18267,7 +19221,7 @@ WHERE PID_NO IS NOT NULL</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Property Addresses\PIMS ADDRESS">
+    design-time-name="Package\Load Property Addresses\PAM_PROPERTY">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -18280,7 +19234,7 @@ WHERE PID_NO IS NOT NULL</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Property Addresses\PAM_PROPERTY">
+    design-time-name="Package\Load Property Addresses\PIMS ADDRESS">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
