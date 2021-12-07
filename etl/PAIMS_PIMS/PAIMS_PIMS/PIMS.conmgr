@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0"?>
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
-  DTS:ObjectName="sqldevtst.th.gov.bc.ca.PIMS_DEV"
+  DTS:ObjectName="PIMS_DEV IS13 Local Networked"
   DTS:DTSID="{BF7874F1-97E7-43B0-A72D-1D2E83B868AF}"
   DTS:CreationName="OLEDB">
   <DTS:ObjectData>
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="1"
       DTS:ConnectRetryInterval="5"
-      DTS:ConnectionString="Data Source=sqldevtst.th.gov.bc.ca;User ID=PIMS_DEV;Initial Catalog=PIMS_DEV;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      DTS:ConnectionString="Data Source=127.0.0.1,5433;User ID=admin;Initial Catalog=pims;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
       <DTS:Password
         DTS:Name="Password"
-        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA1mUTV2pQrESdnKDHC1rXUwAAAAACAAAAAAAQZgAAAAEAACAAAAC06bNubqxPRjZkEA22lwHBP3uPTSZJOFe0i4r6Ko43ygAAAAAOgAAAAAIAACAAAAC3Zqj5+jxC3VFnM1qiFBbwJXKee5CespS/Q2RJAPCFfYAAAAADH9Jimm3aHCAZRQ0o60q0HBGED35LUeZM/7m03tp7FKI7mDrjyCnZBD/Yz9roHBVZWHYHEdMsfdKAGOX+f/Y04bumQ2QbiDTooncQ3AvCrVrq0Q4lqsOPXHxncFJAfDRj9wX+3BGu/9fBSdibgD7WiuJ4k0CK0bN+LwJKgIODd0AAAAChb0Qs6kYe4QhHb/l4cvkt5HDgN3p7igYf4mkzHtHjJSj9qQx0n3N/EGEgYn75oViKF4f1V+9R3dD0+c1G84AQ</DTS:Password>
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA1mUTV2pQrESdnKDHC1rXUwAAAAACAAAAAAAQZgAAAAEAACAAAACl5exVBXYNyeXW0pt8PXrengKiOXWUuJwr9j/xoL2yiAAAAAAOgAAAAAIAACAAAACsEV3bPPdaAp82kFRs0Rh5GWniUucTnrW3X7kxz9Nc35AAAAAh/KZGPGQF10D+jeHDbyyNiNKjjB1Ag4tRBhXGutoohDlWDBOBDW3fidDPt0hlLp3RCQA4NmFvz8djeG30Gs6ojbfGvIDYbOBYgcTHgzi4TCqjL3GQD60yuf5P5kg1bdc1NVy9dLvAP3WiIdfMFEBm9G3aPzyg+Zu2fqtJtH/mKcW6+DytS2G+TH3a33ZtK2dAAAAA8zr+0CRecj1+KSFvyj1HIkm6ftYgliU7BPJar7Lyu/C080eAc7K8E/jIZ0bjhY/L1wTiJdprGyfGf479mGW5Cw==</DTS:Password>
     </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>
