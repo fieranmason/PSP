@@ -7,10 +7,10 @@
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="1"
       DTS:ConnectRetryInterval="5"
-      DTS:ConnectionString="Data Source=127.0.0.1,5433;User ID=admin;Initial Catalog=pims;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      DTS:ConnectionString="Data Source=127.0.0.1,5433;User ID=admin;Initial Catalog=PSP_PIMS_S13_00;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
       <DTS:Password
         DTS:Name="Password"
-        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA1mUTV2pQrESdnKDHC1rXUwAAAAACAAAAAAAQZgAAAAEAACAAAACl5exVBXYNyeXW0pt8PXrengKiOXWUuJwr9j/xoL2yiAAAAAAOgAAAAAIAACAAAACsEV3bPPdaAp82kFRs0Rh5GWniUucTnrW3X7kxz9Nc35AAAAAh/KZGPGQF10D+jeHDbyyNiNKjjB1Ag4tRBhXGutoohDlWDBOBDW3fidDPt0hlLp3RCQA4NmFvz8djeG30Gs6ojbfGvIDYbOBYgcTHgzi4TCqjL3GQD60yuf5P5kg1bdc1NVy9dLvAP3WiIdfMFEBm9G3aPzyg+Zu2fqtJtH/mKcW6+DytS2G+TH3a33ZtK2dAAAAA8zr+0CRecj1+KSFvyj1HIkm6ftYgliU7BPJar7Lyu/C080eAc7K8E/jIZ0bjhY/L1wTiJdprGyfGf479mGW5Cw==</DTS:Password>
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA1mUTV2pQrESdnKDHC1rXUwAAAAACAAAAAAAQZgAAAAEAACAAAAA/tlX7MB/SdZZ5sMpje6W++P2+Dmk2CtuSJpM72BoCrwAAAAAOgAAAAAIAACAAAAAs98t1eApfZ/jG2OiVFb8JR3J8cz9iGTeCi7q8ACCOE4AAAACcD42Y+J17E703RzUL63BoFsqs/SnXaU89LryTtqeNiWlzsYn3AceCdijxmwPCQa2kzp5bFojb6LHfgiXxGfM3burJbXzzlz8zvEX3BvYUZm4r6CRKG3A2zcT+gvOfFm9TYlkqhkaYBTR3EMJ7dr4ciYovxGKEcB5cdFnn2keiLUAAAABMzcPv9LjOpqGyLtFyQGCO2fWJbAaVjUhMBTzfqIrc0IpRiJwbU0UmkS2Lic/VO+0x/PiH1NUOpL2O7emsMgwm</DTS:Password>
     </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>
