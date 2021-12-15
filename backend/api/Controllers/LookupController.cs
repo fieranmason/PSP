@@ -101,7 +101,14 @@ namespace Pims.Api.Controllers
             var areaUnitTypes = _mapper.Map<Model.LookupModel[]>(_pimsService.Lookup.GetPropertyAreaUnitTypes());
             var tenureTypes = _mapper.Map<Model.LookupModel[]>(_pimsService.Lookup.GetPropertyTenureTypes());
             var propertyTypes = _mapper.Map<Model.LookupModel[]>(_pimsService.Lookup.GetPropertyTypes());
-            var paymentReceivableTypes = _mapper.Map<Model.LookupModel[]>(_pimsService.Lookup.GetPaymentReceivableTypes());
+            var leasePaymentReceivableTypes = _mapper.Map<Model.LookupModel[]>(_pimsService.Lookup.GetPaymentReceivableTypes());
+            var leaseProgramTypes = _mapper.Map<Model.LookupModel[]>(_pimsService.Lookup.GetLeaseProgramTypes());
+            var leaseStatusTypes = _mapper.Map<Model.LookupModel[]>(_pimsService.Lookup.GetLeaseStatusTypes());
+            var leaseTypes = _mapper.Map<Model.LookupModel[]>(_pimsService.Lookup.GetLeaseTypes());
+            var leaseCategoryTypes = _mapper.Map<Model.LookupModel[]>(_pimsService.Lookup.GetLeaseCategoryTypes());
+            var leasePurposeTypes = _mapper.Map<Model.LookupModel[]>(_pimsService.Lookup.GetLeasePurposeTypes());
+            var leaseResponsibilityTypes = _mapper.Map<Model.LookupModel[]>(_pimsService.Lookup.GetLeaseResponsibilityTypes());
+            var leaseInitiatorTypes = _mapper.Map<Model.LookupModel[]>(_pimsService.Lookup.GetLeaseInitiatorTypes());
 
             var codes = new List<object>();
             codes.AddRange(roleCodes);
@@ -115,7 +122,14 @@ namespace Pims.Api.Controllers
             codes.AddRange(areaUnitTypes);
             codes.AddRange(tenureTypes);
             codes.AddRange(propertyTypes);
-            codes.AddRange(paymentReceivableTypes);
+            codes.AddRange(leasePaymentReceivableTypes);
+            codes.AddRange(leaseProgramTypes);
+            codes.AddRange(leaseStatusTypes);
+            codes.AddRange(leaseTypes);
+            codes.AddRange(leaseCategoryTypes);
+            codes.AddRange(leasePurposeTypes);
+            codes.AddRange(leaseResponsibilityTypes);
+            codes.AddRange(leaseInitiatorTypes);
             return new JsonResult(codes);
         }
         #endregion

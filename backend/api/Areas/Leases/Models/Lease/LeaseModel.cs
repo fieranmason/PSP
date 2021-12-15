@@ -1,13 +1,17 @@
 using System;
 using System.Collections.Generic;
+using Pims.Api.Models;
 
 namespace Pims.Api.Areas.Lease.Models.Lease
 {
+    /// <summary>
+    /// Provides a lease-oriented model.
+    /// </summary>
     public class LeaseModel
     {
         #region Properties
         /// <summary>
-        /// get/set - The primary key to identify the property.
+        /// get/set - The primary key to identify the lease.
         /// </summary>
         public long Id { get; set; }
 
@@ -34,10 +38,21 @@ namespace Pims.Api.Areas.Lease.Models.Lease
         public string MotiName { get; set; }
 
         /// <summary>
+        /// get/set - The string value of the moti region, user assigned.
+        /// </summary>
+        /// <value></value>
+        public string MotiRegion { get; set; }
+
+        /// <summary>
         /// get/set - The value of the program name.
         /// </summary>
         /// <value></value>
         public string ProgramName { get; set; }
+
+        /// <summary>
+        /// get/set - The location of documents related to this lease.
+        /// </summary>
+        public string DocumentationReference { get; set; }
 
         /// <summary>
         /// get/set - The lease notes.
@@ -100,17 +115,57 @@ namespace Pims.Api.Areas.Lease.Models.Lease
         /// get/set - The receivable payment type code identifier
         /// </summary>
         /// <value></value>
-        public string PaymentReceivableTypeId { get; set; }
-
-        /// <summary>
-        /// get/set - Foreign key to the lease payment frequency type.
-        /// </summary>
-        public string PaymentFrequencyTypeId { get; set; }
+        public TypeModel<string> PaymentReceivableType { get; set; }
 
         /// <summary>
         /// get/set - The lease payment frequency type.
         /// </summary>
-        public string PaymentFrequencyType { get; set; }
+        public TypeModel<string> PaymentFrequencyType { get; set; }
+
+        /// <summary>
+        /// get/set - The entity that initiated this lease.
+        /// </summary>
+        public TypeModel<string> Type { get; set; }
+
+        /// <summary>
+        /// get/set - The entity that initiated this lease.
+        /// </summary>
+        public TypeModel<string> InitiatorType { get; set; }
+
+        /// <summary>
+        /// get/set - The entity responsible for this lease.
+        /// </summary>
+        public TypeModel<string> ResponsibilityType { get; set; }
+
+        /// <summary>
+        /// get/set - The entity responsible for this lease.
+        /// </summary>
+        public TypeModel<string> CategoryType { get; set; }
+
+        /// <summary>
+        /// get/set - The entity responsible for this lease.
+        /// </summary>
+        public TypeModel<string> PurposeType { get; set; }
+
+        /// <summary>
+        /// get/set - The status of this lease within PIMS, Draft by default.
+        /// </summary>
+        public TypeModel<string> StatusType { get; set; }
+
+        /// <summary>
+        /// get/set - The status of this lease within PIMS, Draft by default.
+        /// </summary>
+        public TypeModel<string> ProgramType { get; set; }
+
+        /// <summary>
+        /// get/set - The date this entity assumed responsibility for this lease.
+        /// </summary>
+        public DateTime? ResponsibilityEffectiveDate { get; set; }
+
+        /// <summary>
+        /// get/set - A list of tenant notes.
+        /// </summary>
+        public IEnumerable<TermModel> Terms { get; set; }
 
         /// <summary>
         /// get/set - A list of tenant notes.
@@ -131,6 +186,41 @@ namespace Pims.Api.Areas.Lease.Models.Lease
         /// get/set - A list of properties associated with this lease
         /// </summary>
         public IEnumerable<PropertyModel> Properties { get; set; }
+
+        /// <summary>
+        /// get/set - A list of insurance objects associated with this lease
+        /// </summary>
+        public IEnumerable<InsuranceModel> Insurances { get; set; }
+
+        /// <summary>
+        /// get/set - A collection of Improvements associated to this Lease
+        /// </summary>
+        public IEnumerable<PropertyImprovementModel> Improvements { get; set; }
+
+        /// <summary>
+        /// get/set - A collection of Security Deposits associated to this Lease
+        /// </summary>
+        public IEnumerable<SecurityDepositModel> SecurityDeposits { get; set; }
+
+        /// <summary>
+        /// get/set - A collection of Security Deposit Returns associated to this Lease
+        /// </summary>
+        public IEnumerable<SecurityDepositReturnModel> SecurityDepositReturns { get; set; }
+
+        /// <summary>
+        /// get/set - Whether this improvement contains a building that is subject to RTA (Residential Tenancy Act).
+        /// </summary>
+        public bool IsResidential { get; set; }
+
+        /// <summary>
+        /// get/set - Whether this improvement contains a commercial building.
+        /// </summary>
+        public bool IsCommercialBuilding { get; set; }
+
+        /// <summary>
+        /// get/set - Whether this improvement is of type other.
+        /// </summary>
+        public bool IsOtherImprovement { get; set; }
         #endregion
     }
 }

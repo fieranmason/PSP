@@ -1,21 +1,23 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Pims.Core.Extensions;
 using Pims.Dal.Entities;
 using Pims.Dal.Entities.Models;
+using Pims.Dal.Exceptions;
 using Pims.Dal.Helpers.Extensions;
 using Pims.Dal.Security;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
 
 namespace Pims.Dal.Services
 {
     /// <summary>
     /// LeaseService class, provides a service layer to interact with leases within the datasource.
     /// </summary>
-    public class LeaseService : BaseService<Lease>, ILeaseService
+    public class LeaseService : BaseService<PimsLease>, ILeaseService
     {
         #region Constructors
         /// <summary>
@@ -25,7 +27,7 @@ namespace Pims.Dal.Services
         /// <param name="user"></param>
         /// <param name="service"></param>
         /// <param name="logger"></param>
-        public LeaseService(PimsContext dbContext, ClaimsPrincipal user, IPimsService service, ILogger<LeaseService> logger) : base(dbContext, user, service, logger) { }
+        public LeaseService(PimsContext dbContext, ClaimsPrincipal user, IPimsService service, ILogger<LeaseService> logger, IMapper mapper) : base(dbContext, user, service, logger, mapper) { }
         #endregion
 
         #region Methods
@@ -35,7 +37,7 @@ namespace Pims.Dal.Services
         /// <returns></returns>
         public int Count()
         {
-            return this.Context.Leases.Count();
+            return this.Context.PimsLeases.Count();
         }
 
         /// <summary>
@@ -44,9 +46,9 @@ namespace Pims.Dal.Services
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        public IEnumerable<Lease> Get(LeaseFilter filter)
+        public IEnumerable<PimsLease> Get(LeaseFilter filter)
         {
-            this.User.ThrowIfNotAuthorized(Permissions.PropertyView);
+            this.User.ThrowIfNotAuthorized(Permissions.LeaseView);
             filter.ThrowIfNull(nameof(filter));
             if (!filter.IsValid()) throw new ArgumentException("Argument must have a valid filter", nameof(filter));
 
@@ -56,41 +58,73 @@ namespace Pims.Dal.Services
             return leases;
         }
 
-        public Lease Get(int id)
+        public PimsLease Get(long id)
         {
-            this.User.ThrowIfNotAuthorized(Permissions.PropertyView);
-            return this.Context.Leases.Include(l => l.Properties)
-                .ThenInclude(p => p.Address)
-                .ThenInclude(p => p.Country)
-                .Include(l => l.Properties)
-                .ThenInclude(p => p.Address)
-                .ThenInclude(p => p.Province)
-                .Include(l => l.Properties)
-                .ThenInclude(p => p.AreaUnit)
-                .Include(l => l.ProgramType)
-                .Include(l => l.PaymentFrequencyType)
-                .Include(l => l.MotiName)
+            this.User.ThrowIfNotAuthorized(Permissions.LeaseView);
+            return this.Context.PimsLeases.Include(l => l.PimsPropertyLeases)
+                .ThenInclude(p => p.Property)
+                    .ThenInclude(p => p.Address)
+                    .ThenInclude(p => p.Country)
+                .Include(l => l.PimsPropertyLeases)
+                    .ThenInclude(p => p.Property)
+                    .ThenInclude(p => p.Address)
+                    .ThenInclude(p => p.ProvinceState)
+                .Include(l => l.PimsPropertyLeases)
+                    .ThenInclude(p => p.Property)
+                    .ThenInclude(s => s.SurplusDeclarationTypeCodeNavigation)
+                .Include(l => l.PimsPropertyLeases)
+                    .ThenInclude(p => p.Property)
+                    .ThenInclude(p => p.PropertyAreaUnitTypeCodeNavigation)
+                .Include(l => l.LeaseProgramTypeCodeNavigation)
+                .Include(l => l.LeasePmtFreqTypeCodeNavigation)
+                .Include(l => l.LeasePayRvblTypeCodeNavigation)
+                .Include(l => l.LeaseLicenseTypeCodeNavigation)
+                .Include(l => l.LeaseResponsibilityTypeCodeNavigation)
+                .Include(l => l.LeaseInitiatorTypeCodeNavigation)
+                .Include(l => l.LeasePurposeTypeCodeNavigation)
+                .Include(l => l.LeaseCategoryTypeCodeNavigation)
+                .Include(l => l.LeaseStatusTypeCodeNavigation)
 
-                .Include(l => l.TenantsManyToMany)
-                .ThenInclude(t => t.Person)
-                .ThenInclude(o => o.OrganizationsManyToMany)
-                .Include(l => l.TenantsManyToMany)
-                .ThenInclude(t => t.Person)
-                .ThenInclude(o => o.Address)
-                .Include(l => l.TenantsManyToMany)
-                .ThenInclude(t => t.Person)
-                .ThenInclude(o => o.ContactMethods)
+                .Include(l => l.PimsLeaseTenants)
+                    .ThenInclude(t => t.Person)
+                    .ThenInclude(o => o.PimsPersonOrganizations)
+                    .ThenInclude(o => o.Organization)
+                .Include(l => l.PimsLeaseTenants)
+                    .ThenInclude(t => t.Person)
+                    .ThenInclude(o => o.PimsPersonAddresses)
+                    .ThenInclude(o => o.Address)
+                .Include(l => l.PimsLeaseTenants)
+                    .ThenInclude(t => t.Person)
+                    .ThenInclude(o => o.PimsContactMethods)
 
-                .Include(l => l.TenantsManyToMany)
-                .ThenInclude(t => t.Organization)
-                .ThenInclude(o => o.PersonsManyToMany)
-                .Include(l => l.TenantsManyToMany)
-                .ThenInclude(t => t.Organization)
-                .ThenInclude(o => o.Address)
-                .Include(l => l.TenantsManyToMany)
-                .ThenInclude(t => t.Organization)
-                .ThenInclude(o => o.ContactMethods)
-                .Where(l => l.Id == id)
+                .Include(l => l.PimsLeaseTenants)
+                    .ThenInclude(t => t.Organization)
+                    .ThenInclude(o => o.PimsPersonOrganizations)
+                    .ThenInclude(o => o.Person)
+                .Include(l => l.PimsLeaseTenants)
+                    .ThenInclude(t => t.Organization)
+                    .ThenInclude(o => o.PimsOrganizationAddresses)
+                    .ThenInclude(o => o.Address)
+                .Include(l => l.PimsLeaseTenants)
+                    .ThenInclude(t => t.Organization)
+                    .ThenInclude(o => o.PimsContactMethods)
+
+                .Include(t => t.PimsPropertyImprovements)
+
+                .Include(l => l.PimsInsurances)
+                    .ThenInclude(i => i.InsuranceTypeCodeNavigation)
+
+                .Include(l => l.PimsSecurityDeposits)
+                    .ThenInclude(s => s.SecDepHolderTypeCodeNavigation)
+                .Include(l => l.PimsSecurityDeposits)
+                    .ThenInclude(s => s.SecurityDepositTypeCodeNavigation)
+                .Include(l => l.PimsSecurityDepositReturns)
+                    .ThenInclude(s => s.SecurityDepositTypeCodeNavigation)
+
+                .Include(l => l.PimsLeaseTerms)
+                    .ThenInclude(t => t.LeaseTermStatusTypeCodeNavigation)
+
+                .Where(l => l.LeaseId == id)
                 .FirstOrDefault() ?? throw new KeyNotFoundException();
         }
 
@@ -100,7 +134,7 @@ namespace Pims.Dal.Services
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        public Paged<Lease> GetPage(LeaseFilter filter)
+        public Paged<PimsLease> GetPage(LeaseFilter filter)
         {
             this.User.ThrowIfNotAuthorized(Permissions.PropertyView);
             filter.ThrowIfNull(nameof(filter));
@@ -113,7 +147,62 @@ namespace Pims.Dal.Services
                 .Take(filter.Quantity)
                 .ToArray();
 
-            return new Paged<Lease>(items, filter.Page, filter.Quantity, query.Count());
+            return new Paged<PimsLease>(items, filter.Page, filter.Quantity, query.Count());
+        }
+
+
+        /// <summary>
+        /// Attempt to associate property leases with real properties in the system using the pid/pin identifiers.
+        /// Do not attempt to update any preexisiting properties, simply refer to them by id.
+        ///
+        /// By default, do not allow a property with existing leases to be associated unless the userOverride flag is true.
+        /// </summary>
+        /// <param name="lease"></param>
+        /// <param name="userOverride"></param>
+        /// <returns></returns>
+        private PimsLease AssociatePropertyLeases(PimsLease lease, bool userOverride = false)
+        {
+            lease.PimsPropertyLeases.ForEach(propertyLease => {
+                PimsProperty property = this.Context.PimsProperties
+                    .Include(p => p.PimsPropertyLeases)
+                    .ThenInclude(l => l.Lease)
+                    .FirstOrDefault(p => (propertyLease.Property != null && p.Pid == propertyLease.Property.Pid) ||
+                        (propertyLease.Property.Pin != null && p.Pin == propertyLease.Property.Pin));
+                if (property?.PropertyId == null)
+                {
+                    throw new InvalidOperationException($"Property with PID {propertyLease?.Property?.Pid.ToString() ?? ""} does not exist");
+                }
+                if (property?.PimsPropertyLeases.Any() == true && !userOverride)
+                {
+                    var genericOverrideErrorMsg = $"is attached to L-File # {property.PimsPropertyLeases.FirstOrDefault().Lease.LFileNo}";
+                    if(propertyLease?.Property?.Pin != null)
+                    {
+                        throw new UserOverrideException($"PIN {propertyLease?.Property?.Pin.ToString() ?? ""} {genericOverrideErrorMsg}");
+                    }
+                    throw new UserOverrideException($"PID {propertyLease?.Property?.Pid.ToString() ?? ""} {genericOverrideErrorMsg}");
+                }
+                propertyLease.Property = null; // Remove the property to prevent inadvertent updates.
+                propertyLease.PropertyId = property.PropertyId;
+            });
+            return this.Context.GenerateLFileNo(lease);
+        }
+
+        /// <summary>
+        /// Add the passed lease to the database assuming the user has the require claims.
+        /// </summary>
+        /// <param name="lease"></param>
+        /// <param name="userOverride"></param>
+        /// <returns></returns>
+        public PimsLease Add(PimsLease lease, bool userOverride = false)
+        {
+            if (lease == null) throw new ArgumentNullException(nameof(lease), "lease cannot be null.");
+            this.User.ThrowIfNotAuthorized(Permissions.LeaseAdd);
+
+            lease = AssociatePropertyLeases(lease, userOverride);
+
+            this.Context.PimsLeases.Add(lease);
+            this.Context.CommitTransaction();
+            return Get(lease.LeaseId);
         }
         #endregion
     }

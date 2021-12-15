@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Extensions;
@@ -10,8 +12,6 @@ using Pims.Dal;
 using Pims.Dal.Entities.Models;
 using Pims.Dal.Security;
 using Swashbuckle.AspNetCore.Annotations;
-using System;
-using System.Collections.Generic;
 
 namespace Pims.Api.Areas.Lease.Controllers
 {
@@ -52,7 +52,7 @@ namespace Pims.Api.Areas.Lease.Controllers
         /// </summary>
         /// <returns>An array of leases matching the filter</returns>
         [HttpGet]
-        [HasPermission(Permissions.PropertyView)]
+        [HasPermission(Permissions.LeaseView)]
         [Produces("application/json")]
         [ProducesResponseType(typeof(IEnumerable<LeaseModel>), 200)]
         [ProducesResponseType(typeof(Api.Models.ErrorResponseModel), 400)]
@@ -70,7 +70,7 @@ namespace Pims.Api.Areas.Lease.Controllers
         /// <param name="filter"></param>
         /// <returns>An array of leases matching the filter</returns>
         [HttpPost("filter")]
-        [HasPermission(Permissions.PropertyView)]
+        [HasPermission(Permissions.LeaseView)]
         [Produces("application/json")]
         [ProducesResponseType(typeof(IEnumerable<LeaseModel>), 200)]
         [ProducesResponseType(typeof(Api.Models.ErrorResponseModel), 400)]

@@ -44,8 +44,8 @@ const AccessRequestPage = () => {
   const data = useAppSelector(state => state.accessRequests);
 
   const { getPublicByType } = useLookupCodeHelpers();
-  const roles = getPublicByType(API.ROLE_CODE_SET_NAME);
-  const organizations = getPublicByType(API.ORGANIZATION_CODE_SET_NAME);
+  const roles = getPublicByType(API.ROLE_TYPES);
+  const organizations = getPublicByType(API.ORGANIZATION_TYPES);
 
   const accessRequest = data?.accessRequest;
   const initialValues: Partial<IAccessRequest> = {
@@ -54,7 +54,7 @@ const AccessRequestPage = () => {
     user: {
       id: userInfo?.id,
       keycloakUserId: userInfo?.keycloakUserId,
-      businessIdentifier: userInfo?.username,
+      businessIdentifierValue: userInfo?.username,
       displayName: userInfo?.name,
       firstName: userInfo?.firstName,
       surname: userInfo?.family_name,
@@ -131,8 +131,8 @@ const AccessRequestPage = () => {
 
                 <Input
                   label="IDIR/BCeID"
-                  field="user.businessIdentifier"
-                  placeholder={initialValues?.user?.businessIdentifier}
+                  field="user.businessIdentifierValue"
+                  placeholder={initialValues?.user?.businessIdentifierValue}
                   readOnly={true}
                   type="text"
                 />

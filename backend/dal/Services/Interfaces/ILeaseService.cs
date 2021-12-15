@@ -7,11 +7,12 @@ namespace Pims.Dal.Services
     /// <summary>
     /// ILeaseService interface, provides functions to interact with leases within the datasource.
     /// </summary>
-    public interface ILeaseService : IService<Lease>
+    public interface ILeaseService : IService<PimsLease>
     {
         int Count();
-        IEnumerable<Lease> Get(LeaseFilter filter);
-        Lease Get(int id);
-        Paged<Lease> GetPage(LeaseFilter filter);
+        IEnumerable<PimsLease> Get(LeaseFilter filter);
+        PimsLease Get(long id);
+        Paged<PimsLease> GetPage(LeaseFilter filter);
+        PimsLease Add(PimsLease lease, bool userOverride = false);
     }
 }

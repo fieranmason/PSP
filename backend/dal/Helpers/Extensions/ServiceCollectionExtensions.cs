@@ -1,9 +1,9 @@
+using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Pims.Dal
 {
@@ -26,12 +26,14 @@ namespace Pims.Dal
             services.AddScoped<Services.IProvinceService, Services.ProvinceService>();
             services.AddScoped<Services.ILookupService, Services.LookupService>();
             services.AddScoped<Services.IOrganizationService, Services.OrganizationService>();
+            services.AddScoped<Services.IPersonService, Services.PersonService>();
             services.AddScoped<Services.IUserService, Services.UserService>();
             services.AddScoped<Services.IRoleService, Services.RoleService>();
             services.AddScoped<Services.IClaimService, Services.ClaimService>();
             services.AddScoped<Services.IAccessRequestService, Services.AccessRequestService>();
             services.AddScoped<Services.ITenantService, Services.TenantService>();
             services.AddScoped<Services.ILeaseService, Services.LeaseService>();
+            services.AddScoped<Services.IContactService, Services.ContactService>();
             return services; // TODO: Use reflection to find all services.
         }
 
@@ -52,7 +54,6 @@ namespace Pims.Dal
                 {
                     options.CommandTimeout((int)TimeSpan.FromMinutes(5).TotalSeconds);
                     options.UseNetTopologySuite();
-                    // options.MigrationsHistoryTable("PIMS_MIGRATION_HISTORY"); // TODO: This doesn't work in .NET 5.0 currently.
                 });
                 if (!env.IsProduction())
                 {
