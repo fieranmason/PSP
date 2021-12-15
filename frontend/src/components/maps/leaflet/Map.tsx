@@ -80,23 +80,23 @@ type BaseLayerFile = {
 };
 
 const defaultFilterValues: IPropertyFilter = {
-  searchBy: 'pid',
-  pid: '',
-  pin: '',
+  searchBy: 'pinOrPid',
+  pinOrPid: '',
   address: '',
-  location: '',
 };
 
-const whitelistedFilterKeys = ['PID', 'PIN', 'ADDRESS', 'LOCATION'];
+const whitelistedFilterKeys = ['PID', 'PIN', 'STREET_ADDRESS_1', 'LOCATION'];
 
 /**
  * Converts the map filter to a geo search filter.
  * @param filter The map filter.
  */
 const getQueryParams = (filter: IPropertyFilter): IGeoSearchParams => {
+  // The map will search for either identifier.
+  const pinOrPidValue = filter.pinOrPid ? filter.pinOrPid?.replace(/-/g, '') : undefined;
   return {
-    PID: filter.pid ? +filter.pid?.replace(/-/g, '') : undefined,
-    PIN: filter.pin ? +filter.pin?.replace(/-/g, '') : undefined,
+    PID: pinOrPidValue,
+    PIN: undefined,
     STREET_ADDRESS_1: filter.address,
   };
 };

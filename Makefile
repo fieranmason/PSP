@@ -33,33 +33,132 @@ help:
 
 .PHONY: help
 
+# these are various tools required by make commands below
+GH := $(shell command -v gh 2> /dev/null)
+PYTHON := $(shell command -v python 2> /dev/null)
+NODE := $(shell command -v node 2> /dev/null)
+JQ := $(shell command -v jq 2> /dev/null)
+GIT := $(shell command -v git 2> /dev/null)
+
+
+##############################################################################
+# Dev Tools Requirements
+##############################################################################
+.PHONY: require-node
+require-node:
+ifndef NODE
+	$(error "NodeJS is not available please install from https://nodejs.org/en/")
+endif
+	@exit 0
+
+.PHONY: require-python
+require-python:
+ifndef PYTHON
+	$(error "python3 is not available please install from https://docs.python.org/3")
+endif
+	@exit 0
+
+.PHONY: require-jq
+require-jq:
+ifndef JQ
+	$(error "jq is not available please install from https://stedolan.github.io/jq")
+endif
+	@exit 0
+
+.PHONY: require-gh
+require-gh:
+ifndef GH
+	$(error "gh (GitHub CLI) is not available please install from https://cli.github.com/")
+endif
+	@exit 0
+
+require-git:
+ifndef GIT
+	$(error "GIT is not available please install from https://git-scm.com/downloads")
+endif
+	@exit 0
+
+.PHONY: requirements
+requirements: require-git require-node require-python require-jq require-gh ## Checks development environment requirements (tools in the PATH)
+	@echo "git found..."
+	@echo "node found..."
+	@echo "python3 found..."
+	@echo "jq found..."
+	@echo "gh cli found..."
+
+.PHONY: github-auth
+github-auth: require-gh ## Checks GITHUB_TOKEN has been set
+# look for GITHUB_TOKEN in the environment
+ifdef GITHUB_TOKEN
+	$(info GITHUB_TOKEN found in the environment)
+endif
+# if the token isn't available in the environment we try using the GitHub CLI
+ifeq ($(shell gh config get oauth_token -h github.com),)
+	$(error Failed to fetch GitHub token using GitHub CLI)
+else
+	$(info GITHUB_TOKEN fetched via GitHub CLI)
+endif
+	@exit 0
+
 ##############################################################################
 # Release Management
 ##############################################################################
-VERSION := $(shell node -pe "require('./frontend/package.json').version")
-
 .PHONY: version
-version: ## Prints the current version number
-	@echo "v$(VERSION)"
+version: require-node ## Outputs the latest released version
+	@build/version.sh
+
+.PHONY: version-next
+version-next: require-node ## Outputs the next unreleased version
+	@build/version-next.sh
 
 .PHONY: bump
-bump: ## Bumps the version number
+bump: require-node ## Bumps the version number
 ifndef $(ARGS)
 	$(eval ARGS := --build)
 endif
-	@node ./build/bump-version.js $(ARGS) --apply
+	@build/bump.sh $(ARGS) --apply
+
+branch = HEAD
+
+.PHONY: tag
+tag: require-node require-git require-gh ## Creates a pre-release tag
+	$(eval CURRENT_VERSION := $(shell build/version.sh))
+	$(eval tag := v$(CURRENT_VERSION))
+	$(eval owner := $(shell gh repo view --json owner --jq '.owner.login'))
+	$(eval repo := $(shell gh repo view --json name --jq '.name'))
+
+	$(info Using tag: $(tag))
+	$(info Using repo: $(owner)/$(repo))
+	@git tag -a -f $(tag) $(branch) -m "Release $(tag)"
+	@git push -f --tags --no-verify
+
+.PHONY: release
+release: github-auth require-node require-gh ## Creates a new github release
+	$(eval CURRENT_VERSION := $(shell build/version.sh))
+	$(eval CURRENT_DATE := $(shell date +'%b %d, %Y'))
+	$(eval tag := v$(CURRENT_VERSION))
+	$(eval owner := $(shell gh repo view --json owner --jq '.owner.login'))
+	$(eval repo := $(shell gh repo view --json name --jq '.name'))
+	$(eval release_notes := Release $(tag) ($(CURRENT_DATE)))
+
+	$(info Releasing version $(CURRENT_VERSION))
+	$(info Using tag: $(tag))
+	$(info Using repo: $(owner)/$(repo))
+ifdef changelog
+	gh release create $(tag) -R $(owner)/$(repo) --title $(tag) --notes-file $(changelog)
+else
+	gh release create $(tag) -R $(owner)/$(repo) --title $(tag) --notes "$(release_notes)"
+endif
 
 ##############################################################################
 # DevSecOps
 ##############################################################################
 # python is required for DevSecOps tools
-PYTHON := $(shell command -v python 2> /dev/null)
-JQ := $(shell command -v jq 2> /dev/null)
 
 .PHONY: devops-install
 devops-install: ## Installs software required by DevSecOps tooling (e.g. python, etc)
-	@if [ -z $(PYTHON) ]; then echo "Python could not be found. See See https://docs.python.org/3/"; exit 2; fi
-	@if [ -z $(JQ) ]; then echo "JQ could not be found. See See https://stedolan.github.io/jq/"; exit 2; fi
+	@if [ -z "$(PYTHON)" ]; then echo "Python not found. Install from https://docs.python.org/3"; exit 2; fi
+	@if [ -z "$(JQ)" ]; then echo "JQ not found. Install from https://stedolan.github.io/jq/"; exit 2; fi
 	@python -m ensurepip --upgrade
 	@pip install trufflehog3 jtbl
 
@@ -147,44 +246,27 @@ npm-clean: ## Removes local containers, images, volumes, for frontend applicatio
 npm-refresh: ## Cleans and rebuilds the frontend.  This is useful when npm packages are changed.
 	@"$(MAKE)" npm-clean; make build n=frontend; make up;
 
-db-migrations: ## Display a list of migrations.
-	@echo "$(P) Display a list of migrations."
-	@cd backend/dal; dotnet ef migrations list
+db-refresh: | server-run pause-30 db-seed keycloak-sync ## Refresh the database and seed it with data.
 
-db-add: ## Add a new database migration for the specified name (n=name of migration).
-	@echo "$(P) Create a new database migration for the specified name."
-	@cd backend/dal; dotnet ef migrations add $(n); code -r ./Migrations/*_$(n).cs
-	@./scripts/db-migration.sh $(n);
+db-clean: ## create a new, clean database using the script file in the database. defaults to using the folder specified in database/mssql/.env, but can be overriden with n=PSP_PIMS_S15_00.
+	@echo "$(P) create a clean database with minimal required data for development"
+	TARGET_SPRINT=$(n) docker-compose up -d --force-recreate database
 
-db-update: ## Update the database with the latest migration.
-	@echo "$(P) Updating database with latest migration..."
-	@docker-compose up -d database; cd backend/dal; dotnet ef database update
-
-db-rollback: ## Rollback to the specified database migration (n=name of migration).
-	@echo "$(P) Rollback to the specified database migration."
-	@cd backend/dal; dotnet ef database update $(n);
-
-db-remove: ## Remove the last database migration.
-	@echo "$(P) Remove the last migration."
-	@cd backend/dal; dotnet ef migrations remove --force;
-
-db-clean: ## Re-creates an empty docker database - ready for seeding.
-	@echo "$(P) Refreshing the database..."
-	@cd backend/dal; dotnet ef database drop --force; dotnet ef database update
-
-db-refresh: | server-run pause-30 db-clean db-seed keycloak-sync ## Refresh the database and seed it with data.
-
+db-seed: ## create a new, database seeded with test data using the script file in the database. defaults to using the folder specified in database/mssql/.env, but can be overriden with n=PSP_PIMS_S15_00.
+	@echo "$(P) Seed the database with test data. n=FOLDER_NAME (PSP_PIMS_S15_00)"
+	TARGET_SPRINT=$(n) SEED=TRUE docker-compose up -d --force-recreate database;
+	
 db-drop: ## Drop the database.
 	@echo "$(P) Drop the database."
 	@cd backend/dal; dotnet ef database drop;
 
-db-seed: ## Imports a JSON file of properties into PIMS
-	@echo "$(P) Seeding docker database..."
-	@cd tools/import; dotnet build; dotnet run;
+db-deploy:
+	@echo "$(P) deployment script that facilitates releasing database changes."
+	@cd database/mssql/scripts/dbscripts; TARGET_SPRINT=$(n) ./deploy.sh
 
-db-script: ## Export an SQL script from the migration (from=0 to=Initial).
-	@echo "$(P) Exporting script to 'db-migration.sql'"
-	@cd backend/dal; dotnet ef migrations script ${from} ${to} --output ../../db-migration.sql
+db-scaffold: ## Requires local install of sqlcmd
+	@echo "$(P) regenerate ef core entities from database"
+	@cd backend/dal; eval $(grep -v '^#' .env | xargs) dotnet ef dbcontext scaffold Name=PIMS Microsoft.EntityFrameworkCore.SqlServer -o ../entities/ef --schema dbo --context PimsContext --context-namespace Pims.Dal --context-dir . --startup-project ../api --no-onconfiguring --namespace Pims.Dal.Entities --data-annotations -v -f
 
 keycloak-sync: ## Syncs accounts with Keycloak and PIMS
 	@echo "$(P) Syncing keycloak with PIMS..."
@@ -219,5 +301,5 @@ env: ## Generate env files
 	@echo "$(P) Generate/Regenerate env files required for application (generated passwords only match if database .env file does not already exist)"
 	@./scripts/gen-env-files.sh;
 
-.PHONY: logs start destroy local setup restart refresh up down stop build rebuild clean client-test server-test pause-30 server-run db-migrations db-add db-update db-rollback db-remove db-clean db-drop db-seed db-refresh db-script npm-clean npm-refresh keycloak-sync convert backend-coverage frontend-coverage backend-test frontend-test env
+.PHONY: logs start destroy local setup restart refresh up down stop build rebuild clean client-test server-test pause-30 server-run db-clean db-drop db-seed db-refresh db-script db-scaffold npm-clean npm-refresh keycloak-sync convert backend-coverage frontend-coverage backend-test frontend-test env
 

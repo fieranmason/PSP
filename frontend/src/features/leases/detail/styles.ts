@@ -1,8 +1,9 @@
 import caretRightSvgUrl from 'assets/images/caret-right.svg';
+import { TextArea } from 'components/common/form';
 import { InlineFastCurrencyInput, InlineInput } from 'components/common/form/styles';
 import { InlineFlexDiv } from 'components/common/styles';
 import { Table } from 'components/Table';
-import { Breadcrumb, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import styled from 'styled-components';
 
 export const LeaseH1 = styled.h1`
@@ -11,6 +12,7 @@ export const LeaseH1 = styled.h1`
 
 export const LeaseH2 = styled.h2`
   font-size: 3.2rem;
+  line-height: 4.2rem;
   text-align: left;
   color: ${props => props.theme.css.textColor};
   border-bottom: solid 0.4rem ${props => props.theme.css.primaryColor};
@@ -63,26 +65,13 @@ export const LeaseHeader = styled(InlineFlexDiv)`
   }
 `;
 
-export const LeaseBreadcrumb = styled(Breadcrumb)`
-  .breadcrumb-item:not(:first-child)::before {
-    content: '>';
-    width: 0px;
-    margin-right: 1rem;
-  }
-  .breadcrumb {
-    li a {
-      max-height: 24px;
-    }
-  }
-  grid-area: breadcrumb;
-  ol {
-    background-color: white;
-  }
+export const FormDescriptionLabel = styled(Form.Label)`
+  font-size: 1.6rem;
+  font-weight: 700;
 `;
 
-export const FormDescriptionLabel = styled(Form.Label)`
-  font-size: 1.5rem;
-  font-weight: 700;
+export const FormDescriptionBody = styled(TextArea)`
+  font-weight: 400;
 `;
 
 export const FormControl = styled(Form.Control)`
@@ -101,13 +90,14 @@ export const FormGrid = styled.div`
     margin: 0 0.5rem 0 0;
   }
 
-  & > .input {
+  & > .input,
+  & > .notes {
     grid-column: controls;
     grid-row: auto;
-    border-left: 1px solid black;
+    border-left: 1px solid #666666;
   }
 
-  & .form-control {
+  & .form-control:not(.description, .notes) {
     font-weight: 700;
   }
 
@@ -117,7 +107,7 @@ export const FormGrid = styled.div`
     grid-row: auto;
   }
 
-  & > .textarea,
+  & > .textarea :not(.notes),
   & > h3 {
     grid-column: span 2;
     border-left: none;
@@ -171,7 +161,6 @@ export const TermsTable = styled(Table)`
       background-repeat: no-repeat;
       background-position: right;
       width: 8rem;
-      height: 3.1rem;
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -191,4 +180,10 @@ export const NestedInlineField = styled(InlineInput)`
   .form-label {
     min-width: 7rem;
   }
+`;
+
+export const SectiontHeader = styled(FormDescriptionLabel)`
+  color: ${props => props.theme.css.primaryColor};
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
 `;

@@ -68,10 +68,22 @@ export interface IProperty {
   evaluations?: IPropertyEvaluation[];
   surplusDeclaration?: IPropertySurplus;
 
-  createdOn?: Date | string | Moment;
+  appCreateTimestamp?: Date | string | Moment;
   updatedOn?: Date | string | Moment;
   updatedByEmail?: string;
   updatedByName?: string;
   rowVersion?: number;
   leases?: ILease[];
 }
+
+export interface IFormProperty
+  extends ExtendOverride<
+    IProperty,
+    {
+      areaUnitType?: string;
+      address?: IAddress;
+      propertyTypeId?: PropertyTypes;
+      landArea?: number;
+      landLegalDescription?: string;
+    }
+  > {}

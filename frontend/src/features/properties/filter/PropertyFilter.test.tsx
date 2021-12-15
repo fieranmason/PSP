@@ -45,39 +45,39 @@ let history = createMemoryHistory();
 
 const lCodes = {
   lookupCodes: [
-    { id: 1, name: 'organizationVal', isDisabled: false, type: API.ORGANIZATION_CODE_SET_NAME },
-    { id: 2, name: 'disabledOrganization', isDisabled: true, type: API.ORGANIZATION_CODE_SET_NAME },
-    { id: 1, name: 'roleVal', isDisabled: false, type: API.ROLE_CODE_SET_NAME },
-    { id: 2, name: 'disabledRole', isDisabled: true, type: API.ROLE_CODE_SET_NAME },
+    { id: 1, name: 'organizationVal', isDisabled: false, type: API.ORGANIZATION_TYPES },
+    { id: 2, name: 'disabledOrganization', isDisabled: true, type: API.ORGANIZATION_TYPES },
+    { id: 1, name: 'roleVal', isDisabled: false, type: API.ROLE_TYPES },
+    { id: 2, name: 'disabledRole', isDisabled: true, type: API.ROLE_TYPES },
     {
       id: 1,
       name: 'Core Operational',
       isDisabled: false,
-      type: API.PROPERTY_CLASSIFICATION_CODE_SET_NAME,
+      type: API.PROPERTY_CLASSIFICATION_TYPES,
     },
     {
       id: 2,
       name: 'Core Strategic',
       isDisabled: false,
-      type: API.PROPERTY_CLASSIFICATION_CODE_SET_NAME,
+      type: API.PROPERTY_CLASSIFICATION_TYPES,
     },
     {
       id: 5,
       name: 'Disposed',
       isDisabled: false,
-      type: API.PROPERTY_CLASSIFICATION_CODE_SET_NAME,
+      type: API.PROPERTY_CLASSIFICATION_TYPES,
     },
     {
       id: 6,
       name: 'Demolished',
       isDisabled: false,
-      type: API.PROPERTY_CLASSIFICATION_CODE_SET_NAME,
+      type: API.PROPERTY_CLASSIFICATION_TYPES,
     },
     {
       id: 7,
       name: 'Subdivided',
       isDisabled: false,
-      type: API.PROPERTY_CLASSIFICATION_CODE_SET_NAME,
+      type: API.PROPERTY_CLASSIFICATION_TYPES,
     },
   ] as ILookupCode[],
 };
@@ -90,11 +90,9 @@ const getStore = (filter: any) =>
   });
 
 const defaultFilter: IPropertyFilter = {
-  searchBy: 'pid',
-  pid: '',
+  searchBy: 'pinOrPid',
+  pinOrPid: '',
   address: '',
-  pin: '',
-  location: '',
 };
 
 const getUiElement = (filter: IPropertyFilter, showAllOrganizationSelect = true) => (
@@ -145,21 +143,17 @@ describe('MapFilterBar', () => {
 
     // Assert
     expect(onFilterChange).toBeCalledWith({
-      pid: '',
+      pinOrPid: '',
       address: '',
-      pin: '',
-      location: '',
-      searchBy: 'pid',
+      searchBy: 'pinOrPid',
     });
   });
 
   it('loads filter values if provided', () => {
     const providedFilter: IPropertyFilter = {
-      pid: 'mockPid',
+      pinOrPid: 'mockPid',
       searchBy: 'address',
       address: 'mockaddress',
-      pin: '',
-      location: '',
     };
     const { getByText } = render(getUiElement(providedFilter));
     expect(getByText('Address')).toBeVisible();
@@ -175,11 +169,9 @@ describe('MapFilterBar', () => {
       fireEvent.click(getByTestId('reset-button'));
     });
     expect(onFilterChange).toBeCalledWith<[IPropertyFilter]>({
-      pid: '',
+      pinOrPid: '',
       address: '',
-      pin: '',
-      location: '',
-      searchBy: 'pid',
+      searchBy: 'pinOrPid',
     });
   });
 });

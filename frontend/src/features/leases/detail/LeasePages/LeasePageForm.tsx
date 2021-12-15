@@ -44,6 +44,7 @@ export const ViewEditToggleForm = styled(Form)`
   &#leaseForm {
     text-align: left;
     input:disabled,
+    select:disabled,
     textarea:disabled {
       background: none;
       border: none;
@@ -72,6 +73,7 @@ const StyledLeasePageHeader = styled.div`
     height: 1rem;
     text-align: left;
   }
+  z-index: 1;
 `;
 
 const StyledLeasePage = styled.div`
